@@ -1,0 +1,1700 @@
+[2025-01-13 10:31:28] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 10:31:30] [ERROR] Fatal error in main program - Error: Could not find file 'C:\Users\Ryan\Desktop\Morpheus\Cats\Service\contract-abi.json'.
+StackTrace:    at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)
+   at System.IO.File.ReadAllText(String path, Encoding encoding)
+   at OnlyCatsConsoleApp.Services.SmartContractService..ctor(Web3 web3, String contractAddress, LoggingService logger, AppConfig config) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 30
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 34
+[2025-01-13 10:32:33] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 10:32:35] [INFO] Contract ABI loaded successfully
+[2025-01-13 10:32:35] [INFO] Running tournament...
+[2025-01-13 10:32:35] [ERROR] Fatal error in main program - Error: Function not found:getCatsByState
+StackTrace:    at Nethereum.Contracts.ContractBuilder.GetFunctionAbi(String name)
+   at Nethereum.Contracts.ContractBuilder.GetFunctionBuilder(String name)
+   at Nethereum.Contracts.Contract.GetFunctionBuilder(String name)
+   at Nethereum.Contracts.Contract.GetFunction(String name)
+   at OnlyCatsConsoleApp.Services.SmartContractService.GetCatsByState(String state) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 116
+   at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 130
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 37
+[2025-01-13 10:33:47] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 10:33:48] [INFO] Contract ABI loaded successfully
+[2025-01-13 10:33:48] [INFO] Running tournament...
+[2025-01-13 10:33:49] [ERROR] Fatal error in main program - Error: Cannot dynamically create an instance of type 'System.Numerics.BigInteger[]'. Reason: Type is not supported.
+StackTrace:    at System.RuntimeType.ActivatorCache..ctor(RuntimeType rt)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean wrapExceptions)
+   at Nethereum.ABI.Decoders.ArrayTypeDecoder.DecodeStaticElementType(Byte[] encoded, Type type, Int32 size)
+   at Nethereum.ABI.Decoders.ArrayTypeDecoder.Decode(Byte[] encoded, Type type, Int32 size)
+   at Nethereum.ABI.Decoders.DynamicArrayTypeDecoder.Decode(Byte[] encoded, Type type)
+   at Nethereum.ABI.ABIType.Decode(Byte[] encoded, Type type)
+   at Nethereum.ABI.FunctionEncoding.ParameterDecoder.DecodeOutput(Byte[] outputBytes, ParameterOutput[] outputParameters)
+   at Nethereum.ABI.FunctionEncoding.ParameterDecoder.DecodeOutput(String output, ParameterOutput[] outputParameters)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallDecoder.DecodeSimpleTypeOutput[T](Parameter outputParameter, String output)
+   at Nethereum.Contracts.FunctionBuilderBase.DecodeTypeOutput[TReturn](String output)
+   at Nethereum.Contracts.FunctionBase.CallAsync[TReturn](CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.GetCatsByState(String state) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 117
+   at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 130
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 37
+[2025-01-13 10:35:29] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 10:35:30] [INFO] Contract ABI loaded successfully
+[2025-01-13 10:35:30] [INFO] Running tournament...
+[2025-01-13 10:35:30] [INFO] Getting alive cats...
+[2025-01-13 10:35:31] [INFO] Found 3 alive cats
+[2025-01-13 10:35:31] [INFO] Tournament completed! Winner: Cat #2
+[2025-01-13 10:35:31] [INFO] Grand Prize Pool: 0
+[2025-01-13 10:35:31] [INFO] Total Battles: 2
+[2025-01-13 10:35:31] [INFO] Cats Eliminated: 2
+[2025-01-13 10:35:31] [INFO] Updating contract with tournament results...
+[2025-01-13 10:35:31] [INFO] Starting tournament results update...
+[2025-01-13 10:35:31] [INFO] Updating states for 2 cats to 'dead'
+[2025-01-13 10:35:31] [ERROR] Attempt 1 of 3 for UpdateCatStates - Error: Too many arguments: 4 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 299
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:35:32] [ERROR] Attempt 2 of 3 for UpdateCatStates - Error: Too many arguments: 4 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 299
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:35:34] [ERROR] Attempt 3 of 3 for UpdateCatStates - Error: Too many arguments: 4 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 299
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:35:34] [ERROR] Failed to update tournament results - Error: Too many arguments: 4 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 299
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 62
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateCatStates(String[] tokenIds, String newState) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 297
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 254
+[2025-01-13 10:35:34] [ERROR] Fatal error in main program - Error: Too many arguments: 4 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 299
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 62
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateCatStates(String[] tokenIds, String newState) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 297
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 254
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 290
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 52
+[2025-01-13 10:36:35] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 10:36:37] [INFO] Contract ABI loaded successfully
+[2025-01-13 10:36:37] [INFO] Running tournament...
+[2025-01-13 10:36:37] [INFO] Getting alive cats...
+[2025-01-13 10:36:37] [INFO] Found 3 alive cats
+[2025-01-13 10:36:38] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 10:36:38] [INFO] Grand Prize Pool: 0
+[2025-01-13 10:36:38] [INFO] Total Battles: 2
+[2025-01-13 10:36:38] [INFO] Cats Eliminated: 2
+[2025-01-13 10:36:38] [INFO] Updating contract with tournament results...
+[2025-01-13 10:36:38] [INFO] Starting tournament results update...
+[2025-01-13 10:36:38] [INFO] Updating states for 2 cats to 'dead'
+[2025-01-13 10:36:38] [ERROR] Attempt 1 of 3 for UpdateCatStates - Error: Too many arguments: 4 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 302
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:36:39] [ERROR] Attempt 2 of 3 for UpdateCatStates - Error: Too many arguments: 4 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 302
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:36:41] [ERROR] Attempt 3 of 3 for UpdateCatStates - Error: Too many arguments: 4 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 302
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:36:41] [ERROR] Failed to update tournament results - Error: Too many arguments: 4 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 302
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 62
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateCatStates(String[] tokenIds, String newState) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 297
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 254
+[2025-01-13 10:36:41] [ERROR] Fatal error in main program - Error: Too many arguments: 4 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 302
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 62
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateCatStates(String[] tokenIds, String newState) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 297
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 254
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 290
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 52
+[2025-01-13 10:37:22] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 10:37:24] [INFO] Contract ABI loaded successfully
+[2025-01-13 10:37:24] [INFO] Running tournament...
+[2025-01-13 10:37:24] [INFO] Getting alive cats...
+[2025-01-13 10:37:25] [INFO] Found 3 alive cats
+[2025-01-13 10:37:25] [INFO] Tournament completed! Winner: Cat #2
+[2025-01-13 10:37:25] [INFO] Grand Prize Pool: 0
+[2025-01-13 10:37:25] [INFO] Total Battles: 2
+[2025-01-13 10:37:25] [INFO] Cats Eliminated: 2
+[2025-01-13 10:37:25] [INFO] Updating contract with tournament results...
+[2025-01-13 10:37:25] [INFO] Starting tournament results update...
+[2025-01-13 10:37:25] [INFO] Updating states for 2 cats to 'dead'
+[2025-01-13 10:37:25] [ERROR] Attempt 1 of 3 for UpdateCatStates - Error: Too many arguments: 3 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 302
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:37:26] [ERROR] Attempt 2 of 3 for UpdateCatStates - Error: Too many arguments: 3 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 302
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:37:28] [ERROR] Attempt 3 of 3 for UpdateCatStates - Error: Too many arguments: 3 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 302
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:37:28] [ERROR] Failed to update tournament results - Error: Too many arguments: 3 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 302
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 62
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateCatStates(String[] tokenIds, String newState) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 297
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 254
+[2025-01-13 10:37:28] [ERROR] Fatal error in main program - Error: Too many arguments: 3 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 302
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 62
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateCatStates(String[] tokenIds, String newState) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 297
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 254
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 290
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 52
+[2025-01-13 10:38:12] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 10:38:13] [INFO] Contract ABI loaded successfully
+[2025-01-13 10:38:13] [INFO] Running tournament...
+[2025-01-13 10:38:13] [INFO] Getting alive cats...
+[2025-01-13 10:38:13] [INFO] Found 3 alive cats
+[2025-01-13 10:38:14] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 10:38:14] [INFO] Grand Prize Pool: 0
+[2025-01-13 10:38:14] [INFO] Total Battles: 2
+[2025-01-13 10:38:14] [INFO] Cats Eliminated: 2
+[2025-01-13 10:38:14] [INFO] Updating contract with tournament results...
+[2025-01-13 10:38:14] [INFO] Starting tournament results update...
+[2025-01-13 10:38:14] [INFO] Updating states for 2 cats to 'dead'
+[2025-01-13 10:38:14] [ERROR] Attempt 1 of 3 for UpdateCatStates - Error: the method is currently not implemented: eth_sendTransaction: eth_sendTransaction
+StackTrace:    at Nethereum.JsonRpc.Client.ClientBase.HandleRpcError(RpcResponseMessage response, String reqMsg)
+   at Nethereum.JsonRpc.Client.ClientBase.SendInnerRequestAsync[T](RpcRequestMessage reqMsg, String route)
+   at Nethereum.JsonRpc.Client.ClientBase.SendRequestAsync[T](RpcRequest request, String route)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 316
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:38:15] [ERROR] Attempt 2 of 3 for UpdateCatStates - Error: the method is currently not implemented: eth_sendTransaction: eth_sendTransaction
+StackTrace:    at Nethereum.JsonRpc.Client.ClientBase.HandleRpcError(RpcResponseMessage response, String reqMsg)
+   at Nethereum.JsonRpc.Client.ClientBase.SendInnerRequestAsync[T](RpcRequestMessage reqMsg, String route)
+   at Nethereum.JsonRpc.Client.ClientBase.SendRequestAsync[T](RpcRequest request, String route)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 316
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:38:18] [ERROR] Attempt 3 of 3 for UpdateCatStates - Error: the method is currently not implemented: eth_sendTransaction: eth_sendTransaction
+StackTrace:    at Nethereum.JsonRpc.Client.ClientBase.HandleRpcError(RpcResponseMessage response, String reqMsg)
+   at Nethereum.JsonRpc.Client.ClientBase.SendInnerRequestAsync[T](RpcRequestMessage reqMsg, String route)
+   at Nethereum.JsonRpc.Client.ClientBase.SendRequestAsync[T](RpcRequest request, String route)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 316
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:38:18] [ERROR] Failed to update tournament results - Error: the method is currently not implemented: eth_sendTransaction: eth_sendTransaction
+StackTrace:    at Nethereum.JsonRpc.Client.ClientBase.HandleRpcError(RpcResponseMessage response, String reqMsg)
+   at Nethereum.JsonRpc.Client.ClientBase.SendInnerRequestAsync[T](RpcRequestMessage reqMsg, String route)
+   at Nethereum.JsonRpc.Client.ClientBase.SendRequestAsync[T](RpcRequest request, String route)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 316
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 62
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateCatStates(String[] tokenIds, String newState) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 297
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 254
+[2025-01-13 10:38:18] [ERROR] Fatal error in main program - Error: the method is currently not implemented: eth_sendTransaction: eth_sendTransaction
+StackTrace:    at Nethereum.JsonRpc.Client.ClientBase.HandleRpcError(RpcResponseMessage response, String reqMsg)
+   at Nethereum.JsonRpc.Client.ClientBase.SendInnerRequestAsync[T](RpcRequestMessage reqMsg, String route)
+   at Nethereum.JsonRpc.Client.ClientBase.SendRequestAsync[T](RpcRequest request, String route)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 316
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 62
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateCatStates(String[] tokenIds, String newState) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 297
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 254
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 290
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 52
+[2025-01-13 10:40:08] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 10:40:10] [INFO] Contract ABI loaded successfully
+[2025-01-13 10:40:10] [INFO] Running tournament...
+[2025-01-13 10:40:10] [INFO] Getting alive cats...
+[2025-01-13 10:40:11] [INFO] Found 3 alive cats
+[2025-01-13 10:40:11] [INFO] Tournament completed! Winner: Cat #2
+[2025-01-13 10:40:11] [INFO] Grand Prize Pool: 0
+[2025-01-13 10:40:11] [INFO] Total Battles: 2
+[2025-01-13 10:40:11] [INFO] Cats Eliminated: 2
+[2025-01-13 10:40:11] [INFO] Updating contract with tournament results...
+[2025-01-13 10:40:11] [INFO] Starting tournament results update...
+[2025-01-13 10:40:11] [INFO] Updating states for 2 cats to 'dead'
+[2025-01-13 10:40:11] [ERROR] Attempt 1 of 3 for UpdateCatStates - Error: Too many arguments: 3 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 303
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:40:12] [ERROR] Attempt 2 of 3 for UpdateCatStates - Error: Too many arguments: 3 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 303
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:40:14] [ERROR] Attempt 3 of 3 for UpdateCatStates - Error: Too many arguments: 3 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 303
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:40:14] [ERROR] Failed to update tournament results - Error: Too many arguments: 3 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 303
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 62
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateCatStates(String[] tokenIds, String newState) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 297
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 254
+[2025-01-13 10:40:14] [ERROR] Fatal error in main program - Error: Too many arguments: 3 > 2
+StackTrace:    at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeAbiTypes(ABIType[] abiTypes, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.ParametersEncoder.EncodeParameters(Parameter[] parameters, Object[] values)
+   at Nethereum.ABI.FunctionEncoding.FunctionCallEncoder.EncodeRequest(String sha3Signature, Parameter[] parameters, Object[] values)
+   at Nethereum.Contracts.FunctionBuilder.GetData(Object[] functionInput)
+   at Nethereum.Contracts.FunctionBuilder.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.CreateCallInput(Object[] functionInput)
+   at Nethereum.Contracts.Function.EstimateGasAsync(Object[] functionInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 303
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 62
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateCatStates(String[] tokenIds, String newState) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 297
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 254
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 290
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 52
+[2025-01-13 10:41:13] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 10:41:15] [INFO] Contract ABI loaded successfully
+[2025-01-13 10:41:15] [INFO] Running tournament...
+[2025-01-13 10:41:15] [INFO] Getting alive cats...
+[2025-01-13 10:41:15] [INFO] Found 3 alive cats
+[2025-01-13 10:41:15] [INFO] Tournament completed! Winner: Cat #3
+[2025-01-13 10:41:15] [INFO] Grand Prize Pool: 0
+[2025-01-13 10:41:15] [INFO] Total Battles: 2
+[2025-01-13 10:41:15] [INFO] Cats Eliminated: 2
+[2025-01-13 10:41:15] [INFO] Updating contract with tournament results...
+[2025-01-13 10:41:15] [INFO] Starting tournament results update...
+[2025-01-13 10:41:15] [INFO] Updating states for 2 cats to 'dead'
+[2025-01-13 10:41:16] [ERROR] Attempt 1 of 3 for UpdateCatStates - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 303
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:41:17] [ERROR] Attempt 2 of 3 for UpdateCatStates - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 303
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:41:19] [ERROR] Attempt 3 of 3 for UpdateCatStates - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 303
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+[2025-01-13 10:41:19] [ERROR] Failed to update tournament results - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 303
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 62
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateCatStates(String[] tokenIds, String newState) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 297
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 254
+[2025-01-13 10:41:19] [ERROR] Fatal error in main program - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 303
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 55
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 62
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateCatStates(String[] tokenIds, String newState) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 297
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 254
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 290
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 52
+[2025-01-13 10:42:38] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 10:42:39] [INFO] Contract ABI loaded successfully
+[2025-01-13 10:42:39] [INFO] Running tournament...
+[2025-01-13 10:42:39] [INFO] Getting alive cats...
+[2025-01-13 10:42:40] [INFO] Found 3 alive cats
+[2025-01-13 10:42:40] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 10:42:40] [INFO] Grand Prize Pool: 0
+[2025-01-13 10:42:40] [INFO] Total Battles: 2
+[2025-01-13 10:42:40] [INFO] Cats Eliminated: 2
+[2025-01-13 10:42:40] [INFO] Updating contract with tournament results...
+[2025-01-13 10:42:40] [INFO] Starting tournament results update...
+[2025-01-13 10:42:40] [INFO] Cat #3 current state: alive
+[2025-01-13 10:42:40] [INFO] Cat #2 current state: alive
+[2025-01-13 10:42:40] [INFO] Updating states for 2 cats to 'dead'
+[2025-01-13 10:42:40] [INFO] Attempting to update states for tokens: [3, 2] to state: dead
+[2025-01-13 10:42:40] [INFO] Contract owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 10:42:40] [INFO] Caller address: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 10:42:40] [ERROR] Gas estimation failed, using default - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 335
+[2025-01-13 10:42:40] [INFO] Sending transaction with gas: 2000000
+[2025-01-13 10:42:41] [INFO] Transaction hash: 0x9a8ce64c0a2930adabbebbb638f41480001da1c1b1d34253366384672ddf17a5
+[2025-01-13 10:42:43] [INFO] States update transaction confirmed: 0x9a8ce64c0a2930adabbebbb638f41480001da1c1b1d34253366384672ddf17a5
+[2025-01-13 10:42:45] [INFO] Updating balances for 2 cats
+[2025-01-13 10:42:46] [ERROR] Attempt 1 of 3 for UpdateCatBalances - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass19_0.<<UpdateCatBalances>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 379
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 58
+[2025-01-13 10:42:47] [ERROR] Attempt 2 of 3 for UpdateCatBalances - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass19_0.<<UpdateCatBalances>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 379
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 58
+[2025-01-13 10:42:49] [ERROR] Attempt 3 of 3 for UpdateCatBalances - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass19_0.<<UpdateCatBalances>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 379
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 58
+[2025-01-13 10:42:49] [ERROR] Failed to update tournament results - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass19_0.<<UpdateCatBalances>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 379
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 58
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 65
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateCatBalances(BigInteger[] tokenIds, BigInteger[] amounts) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 377
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 283
+[2025-01-13 10:42:49] [ERROR] Fatal error in main program - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass19_0.<<UpdateCatBalances>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 379
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 58
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 65
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateCatBalances(BigInteger[] tokenIds, BigInteger[] amounts) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 377
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 283
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 308
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 52
+[2025-01-13 10:43:55] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 10:43:57] [INFO] Contract ABI loaded successfully
+[2025-01-13 10:43:57] [INFO] Running tournament...
+[2025-01-13 10:43:57] [INFO] Getting alive cats...
+[2025-01-13 10:43:57] [INFO] Found 1 alive cats
+[2025-01-13 10:43:57] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 10:43:57] [INFO] Grand Prize Pool: 0
+[2025-01-13 10:43:57] [INFO] Total Battles: 0
+[2025-01-13 10:43:57] [INFO] Cats Eliminated: 0
+[2025-01-13 10:43:57] [INFO] Updating contract with tournament results...
+[2025-01-13 10:43:57] [INFO] Starting tournament results update...
+[2025-01-13 10:43:57] [INFO] Updating states for 0 cats to 'dead'
+[2025-01-13 10:43:57] [INFO] Attempting to update states for tokens: [] to state: dead
+[2025-01-13 10:43:57] [INFO] Contract owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 10:43:57] [INFO] Caller address: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 10:43:57] [ERROR] Gas estimation failed, using default - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 357
+[2025-01-13 10:43:57] [INFO] Sending transaction with gas: 2000000
+[2025-01-13 10:43:58] [INFO] Transaction hash: 0x3909dc23861fa1c2125f46b5b9dc7b34a17da0499491346fc5d713498c34b3a4
+[2025-01-13 10:44:02] [INFO] States update transaction confirmed: 0x3909dc23861fa1c2125f46b5b9dc7b34a17da0499491346fc5d713498c34b3a4
+[2025-01-13 10:44:04] [INFO] Cat #1 current balance: 0
+[2025-01-13 10:44:04] [INFO] Updating balances for 1 cats
+[2025-01-13 10:44:04] [INFO] Attempting to update balances for tokens: [1] with amounts: [0]
+[2025-01-13 10:44:04] [INFO] Contract owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 10:44:04] [INFO] Caller address: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 10:44:04] [ERROR] Gas estimation failed, using default - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass19_0.<<UpdateCatBalances>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 416
+[2025-01-13 10:44:04] [INFO] Sending transaction with gas: 2000000
+[2025-01-13 10:44:04] [INFO] Transaction hash: 0x6ba66e2d3b86e14029b8a28b06afc22ace82f7f1f70d7002d0cf957138176b1e
+[2025-01-13 10:44:08] [INFO] Balances update transaction confirmed: 0x6ba66e2d3b86e14029b8a28b06afc22ace82f7f1f70d7002d0cf957138176b1e
+[2025-01-13 10:44:10] [INFO] Recording 0 battles
+[2025-01-13 10:44:10] [INFO] Tournament results update completed successfully!
+[2025-01-13 10:44:10] [INFO] Contract updated successfully!
+[2025-01-13 10:46:06] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 10:46:07] [INFO] Contract ABI loaded successfully
+[2025-01-13 10:46:07] [INFO] Running tournament...
+[2025-01-13 10:46:07] [INFO] Getting alive cats...
+[2025-01-13 10:46:08] [INFO] Found 1 alive cats
+[2025-01-13 10:46:08] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 10:46:08] [INFO] Grand Prize Pool: 0
+[2025-01-13 10:46:08] [INFO] Total Battles: 0
+[2025-01-13 10:46:08] [INFO] Cats Eliminated: 0
+[2025-01-13 10:46:08] [INFO] Updating contract with tournament results...
+[2025-01-13 10:46:08] [INFO] Starting tournament results update...
+[2025-01-13 10:46:08] [INFO] Updating states for 0 cats to 'dead'
+[2025-01-13 10:46:08] [INFO] Attempting to update states for tokens: [] to state: dead
+[2025-01-13 10:46:08] [INFO] Contract owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 10:46:08] [INFO] Caller address: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 10:46:08] [ERROR] Gas estimation failed, using default - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 357
+[2025-01-13 10:46:08] [INFO] Sending transaction with gas: 2000000
+[2025-01-13 10:46:09] [INFO] Transaction hash: 0x88c7cc38915512db132f7c061544d6377521c3f3110e4a777290703c0816abe4
+[2025-01-13 10:46:11] [INFO] States update transaction confirmed: 0x88c7cc38915512db132f7c061544d6377521c3f3110e4a777290703c0816abe4
+[2025-01-13 10:46:13] [INFO] Cat #1 current balance: 0
+[2025-01-13 10:46:13] [INFO] Updating balances for 1 cats
+[2025-01-13 10:46:13] [INFO] Attempting to update balances for tokens: [1] with amounts: [0]
+[2025-01-13 10:46:13] [INFO] Contract owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 10:46:13] [INFO] Caller address: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 10:46:14] [INFO] Current balance for Cat #1: 0
+[2025-01-13 10:46:14] [ERROR] Gas estimation failed, using default - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.ContractCall.CallAsync(CallInput callInput, BlockParameter block)
+   at Nethereum.Contracts.FunctionBase.CallAsync[TReturn](CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass19_0.<<UpdateCatBalances>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 445
+[2025-01-13 10:46:14] [INFO] Sending transaction with gas: 2000000
+[2025-01-13 10:46:14] [INFO] Transaction hash: 0xafb6986a27b73ddd761e90148dfd89972238d6406af9dd051f9663bc3f20bd30
+[2025-01-13 10:46:18] [INFO] Balances update transaction confirmed: 0xafb6986a27b73ddd761e90148dfd89972238d6406af9dd051f9663bc3f20bd30
+[2025-01-13 10:46:20] [INFO] Recording 0 battles
+[2025-01-13 10:46:20] [INFO] Tournament results update completed successfully!
+[2025-01-13 10:46:20] [INFO] Contract updated successfully!
+[2025-01-13 10:47:55] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 10:47:57] [INFO] Contract ABI loaded successfully
+[2025-01-13 10:47:57] [INFO] Running tournament...
+[2025-01-13 10:47:57] [INFO] Getting alive cats...
+[2025-01-13 10:47:57] [INFO] Found 1 alive cats
+[2025-01-13 10:47:57] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 10:47:57] [INFO] Grand Prize Pool: 0
+[2025-01-13 10:47:57] [INFO] Total Battles: 0
+[2025-01-13 10:47:57] [INFO] Cats Eliminated: 0
+[2025-01-13 10:47:57] [INFO] Updating contract with tournament results...
+[2025-01-13 10:47:57] [INFO] Starting tournament results update...
+[2025-01-13 10:47:57] [INFO] No cats to update to dead state
+[2025-01-13 10:47:57] [INFO] No non-zero balance updates needed
+[2025-01-13 10:47:57] [INFO] No battles to record
+[2025-01-13 10:47:57] [INFO] Tournament results update completed successfully!
+[2025-01-13 10:47:57] [INFO] Contract updated successfully!
+[2025-01-13 11:35:12] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 11:35:14] [INFO] Contract ABI loaded successfully
+[2025-01-13 11:35:14] [INFO] Running tournament...
+[2025-01-13 11:35:14] [INFO] Getting alive cats...
+[2025-01-13 11:35:14] [WARN] No cats found in state: alive
+[2025-01-13 11:35:14] [ERROR] Failed to run daily tournament - Error: No alive cats found to battle!
+StackTrace:    at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 154
+[2025-01-13 11:35:14] [ERROR] Fatal error in main program - Error: No alive cats found to battle!
+StackTrace:    at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 154
+   at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 217
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 42
+[2025-01-13 11:39:43] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 11:39:45] [INFO] Contract ABI loaded successfully
+[2025-01-13 11:39:45] [INFO] Running tournament...
+[2025-01-13 11:39:45] [INFO] Getting alive cats...
+[2025-01-13 11:39:45] [INFO] Checking for cats in state: alive
+[2025-01-13 11:39:46] [WARN] No cats found in state: alive
+[2025-01-13 11:39:46] [ERROR] Failed to run daily tournament - Error: No alive cats found to battle!
+StackTrace:    at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 167
+[2025-01-13 11:39:46] [ERROR] Fatal error in main program - Error: No alive cats found to battle!
+StackTrace:    at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 167
+   at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 230
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 42
+[2025-01-13 11:41:36] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 11:41:37] [INFO] Contract ABI loaded successfully
+[2025-01-13 11:41:37] [INFO] Running tournament...
+[2025-01-13 11:41:37] [INFO] Getting alive cats...
+[2025-01-13 11:41:38] [INFO] Total number of cats (nextTokenId): 2
+[2025-01-13 11:41:38] [INFO] Cat #1 state: dead
+[2025-01-13 11:41:38] [INFO] Cat #1 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: dead
+[2025-01-13 11:41:38] [INFO] Checking for cats in state: alive
+[2025-01-13 11:41:38] [INFO] Calling getCatsByState with parameter: alive
+[2025-01-13 11:41:38] [INFO] getCatsByState returned 0 cats
+[2025-01-13 11:41:38] [WARN] No cats found in state: alive
+[2025-01-13 11:41:38] [INFO] No alive cats found. Checking if we need to revive cats...
+[2025-01-13 11:41:38] [INFO] Checking for cats in state: dead
+[2025-01-13 11:41:38] [INFO] Calling getCatsByState with parameter: dead
+[2025-01-13 11:41:38] [INFO] getCatsByState returned 1 cats
+[2025-01-13 11:41:38] [INFO] Cat IDs: [1]
+[2025-01-13 11:41:38] [INFO] Found 1 dead cats. Consider reviving them using the reviveCat function.
+[2025-01-13 11:41:38] [ERROR] Failed to run daily tournament - Error: No alive cats found to battle!
+StackTrace:    at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 219
+[2025-01-13 11:41:38] [ERROR] Fatal error in main program - Error: No alive cats found to battle!
+StackTrace:    at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 219
+   at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 282
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 42
+[2025-01-13 11:42:21] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 11:42:22] [INFO] Contract ABI loaded successfully
+[2025-01-13 11:42:22] [INFO] Running tournament...
+[2025-01-13 11:42:22] [INFO] Getting alive cats...
+[2025-01-13 11:42:23] [INFO] Total number of cats (nextTokenId): 5
+[2025-01-13 11:42:23] [INFO] Cat #1 state: alive
+[2025-01-13 11:42:23] [INFO] Cat #1 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 11:42:23] [INFO] Cat #2 state: alive
+[2025-01-13 11:42:23] [INFO] Cat #2 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 11:42:24] [INFO] Cat #3 state: alive
+[2025-01-13 11:42:24] [INFO] Cat #3 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 11:42:24] [INFO] Cat #4 state: alive
+[2025-01-13 11:42:24] [INFO] Cat #4 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 11:42:24] [INFO] Checking for cats in state: alive
+[2025-01-13 11:42:24] [INFO] Calling getCatsByState with parameter: alive
+[2025-01-13 11:42:24] [INFO] getCatsByState returned 4 cats
+[2025-01-13 11:42:24] [INFO] Cat IDs: [1, 2, 3, 4]
+[2025-01-13 11:42:24] [INFO] Found 4 alive cats
+[2025-01-13 11:42:24] [INFO] Tournament completed! Winner: Cat #4
+[2025-01-13 11:42:24] [INFO] Grand Prize Pool: 0
+[2025-01-13 11:42:24] [INFO] Total Battles: 3
+[2025-01-13 11:42:24] [INFO] Cats Eliminated: 3
+[2025-01-13 11:42:24] [INFO] Updating contract with tournament results...
+[2025-01-13 11:42:24] [INFO] Starting tournament results update...
+[2025-01-13 11:42:24] [INFO] Cat #3 state: alive
+[2025-01-13 11:42:24] [INFO] Cat #3 current state: alive
+[2025-01-13 11:42:24] [INFO] Cat #2 state: alive
+[2025-01-13 11:42:24] [INFO] Cat #2 current state: alive
+[2025-01-13 11:42:24] [INFO] Cat #1 state: alive
+[2025-01-13 11:42:24] [INFO] Cat #1 current state: alive
+[2025-01-13 11:42:24] [INFO] Updating states for 3 cats to 'dead'
+[2025-01-13 11:42:24] [INFO] Attempting to update states for tokens: [3, 2, 1] to state: dead
+[2025-01-13 11:42:25] [INFO] Contract owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 11:42:25] [INFO] Caller address: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 11:42:25] [ERROR] Gas estimation failed, using default - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 433
+[2025-01-13 11:42:25] [INFO] Sending transaction with gas: 2000000
+[2025-01-13 11:42:26] [INFO] Transaction hash: 0x02bd4e8b0276e918fca38b6bee5199ba6dccf76c87075168283ad215d067681d
+[2025-01-13 11:42:27] [INFO] States update transaction confirmed: 0x02bd4e8b0276e918fca38b6bee5199ba6dccf76c87075168283ad215d067681d
+[2025-01-13 11:42:29] [INFO] No non-zero balance updates needed
+[2025-01-13 11:42:29] [INFO] Recording 3 battles
+[2025-01-13 11:42:29] [ERROR] Attempt 1 of 3 for RecordBattle - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass20_0.<<RecordBattle>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 597
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 58
+[2025-01-13 11:42:30] [ERROR] Attempt 2 of 3 for RecordBattle - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass20_0.<<RecordBattle>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 597
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 58
+[2025-01-13 11:42:32] [ERROR] Attempt 3 of 3 for RecordBattle - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass20_0.<<RecordBattle>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 597
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 58
+[2025-01-13 11:42:32] [ERROR] Failed to update tournament results - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass20_0.<<RecordBattle>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 597
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 58
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 65
+   at OnlyCatsConsoleApp.Services.SmartContractService.RecordBattle(Int64 date, BigInteger winnerId, BigInteger loserId) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 595
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 392
+[2025-01-13 11:42:32] [ERROR] Fatal error in main program - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass20_0.<<RecordBattle>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 597
+--- End of stack trace from previous location ---
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 58
+   at OnlyCatsConsoleApp.Services.SmartContractService.ExecuteWithRetryAsync[T](Func`1 action, String operationName) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 65
+   at OnlyCatsConsoleApp.Services.SmartContractService.RecordBattle(Int64 date, BigInteger winnerId, BigInteger loserId) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 595
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 392
+   at OnlyCatsConsoleApp.Services.SmartContractService.UpdateTournamentResults(TournamentResult result) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 411
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 52
+[2025-01-13 11:43:46] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 11:43:48] [INFO] Contract ABI loaded successfully
+[2025-01-13 11:43:48] [INFO] Running tournament...
+[2025-01-13 11:43:48] [INFO] Getting alive cats...
+[2025-01-13 11:43:48] [INFO] Total number of cats (nextTokenId): 5
+[2025-01-13 11:43:49] [INFO] Cat #1 state: alive
+[2025-01-13 11:43:49] [INFO] Cat #1 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 11:43:49] [INFO] Cat #2 state: alive
+[2025-01-13 11:43:49] [INFO] Cat #2 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 11:43:49] [INFO] Cat #3 state: alive
+[2025-01-13 11:43:49] [INFO] Cat #3 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 11:43:49] [INFO] Cat #4 state: alive
+[2025-01-13 11:43:49] [INFO] Cat #4 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 11:43:49] [INFO] Checking for cats in state: alive
+[2025-01-13 11:43:49] [INFO] Calling getCatsByState with parameter: alive
+[2025-01-13 11:43:49] [INFO] getCatsByState returned 4 cats
+[2025-01-13 11:43:49] [INFO] Cat IDs: [1, 2, 3, 4]
+[2025-01-13 11:43:49] [INFO] Found 4 alive cats
+[2025-01-13 11:43:50] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 11:43:50] [INFO] Grand Prize Pool: 0
+[2025-01-13 11:43:50] [INFO] Total Battles: 3
+[2025-01-13 11:43:50] [INFO] Cats Eliminated: 3
+[2025-01-13 11:43:50] [INFO] Updating contract with tournament results...
+[2025-01-13 11:43:50] [INFO] Starting tournament results update...
+[2025-01-13 11:43:50] [INFO] Cat #3 state: alive
+[2025-01-13 11:43:50] [INFO] Cat #3 current state: alive
+[2025-01-13 11:43:50] [INFO] Cat #4 state: alive
+[2025-01-13 11:43:50] [INFO] Cat #4 current state: alive
+[2025-01-13 11:43:50] [INFO] Cat #2 state: alive
+[2025-01-13 11:43:50] [INFO] Cat #2 current state: alive
+[2025-01-13 11:43:50] [INFO] Updating states for 3 cats to 'dead'
+[2025-01-13 11:43:50] [INFO] Attempting to update states for tokens: [3, 4, 2] to state: dead
+[2025-01-13 11:43:50] [INFO] Contract owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 11:43:50] [INFO] Caller address: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 11:43:50] [ERROR] Gas estimation failed, using default - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.FunctionBase.EstimateGasFromEncAsync(CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass18_0.<<UpdateCatStates>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 433
+[2025-01-13 11:43:50] [INFO] Sending transaction with gas: 2000000
+[2025-01-13 11:43:51] [INFO] Transaction hash: 0x89d90bb1ca3f6418f9a57396462e197ce408f552bd9051d1cf70b27e4aea7a32
+[2025-01-13 11:43:53] [INFO] States update transaction confirmed: 0x89d90bb1ca3f6418f9a57396462e197ce408f552bd9051d1cf70b27e4aea7a32
+[2025-01-13 11:43:55] [INFO] No non-zero balance updates needed
+[2025-01-13 11:43:55] [INFO] Recording 3 battles
+[2025-01-13 11:43:55] [INFO] Recording battle - Date: 1736797435, Winner: #2, Loser: #3
+[2025-01-13 11:43:55] [INFO] Cat #2 state: dead
+[2025-01-13 11:43:56] [INFO] Cat #3 state: dead
+[2025-01-13 11:43:56] [INFO] Winner #2 state: dead
+[2025-01-13 11:43:56] [INFO] Loser #3 state: dead
+[2025-01-13 11:43:56] [INFO] Contract owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 11:43:56] [INFO] Caller address: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 11:43:56] [INFO] Simulating recordBattle transaction...
+[2025-01-13 11:43:56] [ERROR] Gas estimation failed, using default - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.ContractCall.CallAsync(CallInput callInput, BlockParameter block)
+   at Nethereum.Contracts.FunctionBase.CallAsync[TReturn](CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass20_0.<<RecordBattle>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 626
+[2025-01-13 11:43:56] [INFO] Sending transaction with gas: 2000000
+[2025-01-13 11:43:56] [INFO] Transaction hash: 0xe4674e756d1d6aabf729a756dba492121b8c720de7cdb2f2c3f3a4791ff321f3
+[2025-01-13 11:43:59] [INFO] Battle recorded: Winner #2 vs Loser #3
+[2025-01-13 11:43:59] [INFO] Recording battle - Date: 1736797439, Winner: #1, Loser: #4
+[2025-01-13 11:44:00] [INFO] Cat #1 state: alive
+[2025-01-13 11:44:00] [INFO] Cat #4 state: dead
+[2025-01-13 11:44:00] [INFO] Winner #1 state: alive
+[2025-01-13 11:44:00] [INFO] Loser #4 state: dead
+[2025-01-13 11:44:00] [INFO] Contract owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 11:44:00] [INFO] Caller address: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 11:44:00] [INFO] Simulating recordBattle transaction...
+[2025-01-13 11:44:00] [ERROR] Gas estimation failed, using default - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.ContractCall.CallAsync(CallInput callInput, BlockParameter block)
+   at Nethereum.Contracts.FunctionBase.CallAsync[TReturn](CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass20_0.<<RecordBattle>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 626
+[2025-01-13 11:44:00] [INFO] Sending transaction with gas: 2000000
+[2025-01-13 11:44:00] [INFO] Transaction hash: 0xf557515e90ce5852fce45a11597134954bf6e517a80e6c9e065220c74ec437e6
+[2025-01-13 11:44:03] [INFO] Battle recorded: Winner #1 vs Loser #4
+[2025-01-13 11:44:03] [INFO] Recording battle - Date: 1736797443, Winner: #1, Loser: #2
+[2025-01-13 11:44:03] [INFO] Cat #1 state: alive
+[2025-01-13 11:44:03] [INFO] Cat #2 state: dead
+[2025-01-13 11:44:03] [INFO] Winner #1 state: alive
+[2025-01-13 11:44:03] [INFO] Loser #2 state: dead
+[2025-01-13 11:44:03] [INFO] Contract owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 11:44:03] [INFO] Caller address: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 11:44:03] [INFO] Simulating recordBattle transaction...
+[2025-01-13 11:44:03] [ERROR] Gas estimation failed, using default - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.ContractCall.CallAsync(CallInput callInput, BlockParameter block)
+   at Nethereum.Contracts.FunctionBase.CallAsync[TReturn](CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass20_0.<<RecordBattle>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 626
+[2025-01-13 11:44:03] [INFO] Sending transaction with gas: 2000000
+[2025-01-13 11:44:03] [INFO] Transaction hash: 0x786bca1f712bd67bb5275395b867804626fd15e2f866068eb65636133c4c1ed5
+[2025-01-13 11:44:06] [INFO] Battle recorded: Winner #1 vs Loser #2
+[2025-01-13 11:44:06] [INFO] Tournament results update completed successfully!
+[2025-01-13 11:44:06] [INFO] Contract updated successfully!
+[2025-01-13 11:46:55] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 11:46:57] [INFO] Contract ABI loaded successfully
+[2025-01-13 11:46:57] [INFO] Running tournament...
+[2025-01-13 11:46:57] [INFO] Getting alive cats...
+[2025-01-13 11:46:57] [INFO] Total number of cats (nextTokenId): 5
+[2025-01-13 11:46:58] [INFO] Cat #1 state: alive
+[2025-01-13 11:46:58] [INFO] Cat #1 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 11:46:58] [INFO] Cat #2 state: alive
+[2025-01-13 11:46:58] [INFO] Cat #2 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 11:46:58] [INFO] Cat #3 state: alive
+[2025-01-13 11:46:58] [INFO] Cat #3 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 11:46:58] [INFO] Cat #4 state: alive
+[2025-01-13 11:46:58] [INFO] Cat #4 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 11:46:58] [INFO] Checking for cats in state: alive
+[2025-01-13 11:46:58] [INFO] Calling getCatsByState with parameter: alive
+[2025-01-13 11:46:58] [INFO] getCatsByState returned 4 cats
+[2025-01-13 11:46:58] [INFO] Cat IDs: [1, 2, 3, 4]
+[2025-01-13 11:46:58] [INFO] Found 4 alive cats
+[2025-01-13 11:46:58] [INFO] Battle completed: Winner #3 gets 0 tokens, 0 tokens added to prize pool, Loser #2 loses 0 tokens
+[2025-01-13 11:46:58] [INFO] Battle completed: Winner #1 gets 0 tokens, 0 tokens added to prize pool, Loser #4 loses 0 tokens
+[2025-01-13 11:46:58] [INFO] Battle completed: Winner #1 gets 0 tokens, 0 tokens added to prize pool, Loser #3 loses 0 tokens
+[2025-01-13 11:46:58] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 11:46:58] [INFO] Grand Prize Pool: 0
+[2025-01-13 11:46:58] [INFO] Total Battles: 3
+[2025-01-13 11:46:58] [INFO] Cats Eliminated: 3
+[2025-01-13 11:46:58] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 11:46:58] [INFO] Grand Prize Pool: 0
+[2025-01-13 11:46:58] [INFO] Total Battles: 3
+[2025-01-13 11:46:58] [INFO] Cats Eliminated: 3
+[2025-01-13 11:46:58] [INFO] Updating contract with tournament results...
+[2025-01-13 11:46:58] [INFO] Starting tournament results update...
+[2025-01-13 11:46:58] [INFO] Cat #2 state: alive
+[2025-01-13 11:46:58] [INFO] Cat #2 current state: alive
+[2025-01-13 11:46:59] [INFO] Cat #4 state: alive
+[2025-01-13 11:46:59] [INFO] Cat #4 current state: alive
+[2025-01-13 11:46:59] [INFO] Cat #3 state: alive
+[2025-01-13 11:46:59] [INFO] Cat #3 current state: alive
+[2025-01-13 11:46:59] [INFO] Updating states for 3 cats to 'dead'
+[2025-01-13 11:46:59] [INFO] Attempting to update states for tokens: [2, 4, 3] to state: dead
+[2025-01-13 11:46:59] [INFO] Sending transaction with gas: 500000
+[2025-01-13 11:46:59] [INFO] Transaction hash: 0x74a0dd663579e41c731f4603814fd0e581453f6b7131287eeeb7c18cbedad802
+[2025-01-13 11:47:02] [INFO] States update transaction confirmed: 0x74a0dd663579e41c731f4603814fd0e581453f6b7131287eeeb7c18cbedad802
+[2025-01-13 11:47:04] [INFO] No non-zero balance updates needed
+[2025-01-13 11:47:04] [INFO] Recording 3 battles
+[2025-01-13 11:47:04] [INFO] Recording battle - Date: 1736797624, Winner: #3, Loser: #2
+[2025-01-13 11:47:04] [INFO] Cat #3 state: dead
+[2025-01-13 11:47:04] [INFO] Cat #2 state: dead
+[2025-01-13 11:47:04] [INFO] Winner #3 state: dead
+[2025-01-13 11:47:04] [INFO] Loser #2 state: dead
+[2025-01-13 11:47:04] [INFO] Sending transaction with gas: 300000
+[2025-01-13 11:47:04] [INFO] Transaction hash: 0x9b288cf5b9a8beb51d254606b0469c1b20062cb5bb0fcf0ba7eb0f43d69d55c0
+[2025-01-13 11:47:07] [INFO] Battle recorded: Winner #3 vs Loser #2
+[2025-01-13 11:47:07] [INFO] Recording battle - Date: 1736797627, Winner: #1, Loser: #4
+[2025-01-13 11:47:07] [INFO] Cat #1 state: alive
+[2025-01-13 11:47:07] [INFO] Cat #4 state: dead
+[2025-01-13 11:47:07] [INFO] Winner #1 state: alive
+[2025-01-13 11:47:07] [INFO] Loser #4 state: dead
+[2025-01-13 11:47:07] [INFO] Sending transaction with gas: 300000
+[2025-01-13 11:47:08] [INFO] Transaction hash: 0xc8ffc53604c3a9b7057b67230dc578b5c312fd38f1b7a0b9cd8e13f48c7d6f1d
+[2025-01-13 11:47:09] [INFO] Battle recorded: Winner #1 vs Loser #4
+[2025-01-13 11:47:09] [INFO] Recording battle - Date: 1736797629, Winner: #1, Loser: #3
+[2025-01-13 11:47:09] [INFO] Cat #1 state: alive
+[2025-01-13 11:47:09] [INFO] Cat #3 state: dead
+[2025-01-13 11:47:09] [INFO] Winner #1 state: alive
+[2025-01-13 11:47:09] [INFO] Loser #3 state: dead
+[2025-01-13 11:47:09] [INFO] Sending transaction with gas: 300000
+[2025-01-13 11:47:09] [INFO] Transaction hash: 0xde7548a99380bbf026428cd9e9304d90d8b581a0d3bcecfd90b0e42c1ff9f064
+[2025-01-13 11:47:12] [INFO] Battle recorded: Winner #1 vs Loser #3
+[2025-01-13 11:47:12] [INFO] Tournament results update completed successfully!
+[2025-01-13 11:47:12] [INFO] Contract updated successfully!
+[2025-01-13 11:48:44] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 11:48:45] [INFO] Contract ABI loaded successfully
+[2025-01-13 11:48:45] [INFO] Running tournament...
+[2025-01-13 11:48:45] [INFO] Getting alive cats...
+[2025-01-13 11:48:46] [INFO] Total number of cats (nextTokenId): 5
+[2025-01-13 11:48:46] [INFO] Cat #1 state: alive
+[2025-01-13 11:48:46] [INFO] Cat #1 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 11:48:46] [INFO] Cat #2 state: alive
+[2025-01-13 11:48:46] [INFO] Cat #2 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 11:48:46] [INFO] Cat #3 state: alive
+[2025-01-13 11:48:46] [INFO] Cat #3 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 11:48:46] [INFO] Cat #4 state: alive
+[2025-01-13 11:48:46] [INFO] Cat #4 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 11:48:46] [INFO] Checking for cats in state: alive
+[2025-01-13 11:48:46] [INFO] Calling getCatsByState with parameter: alive
+[2025-01-13 11:48:46] [INFO] getCatsByState returned 4 cats
+[2025-01-13 11:48:46] [INFO] Cat IDs: [1, 2, 3, 4]
+[2025-01-13 11:48:46] [INFO] Found 4 alive cats
+[2025-01-13 11:48:46] [INFO] Battle completed: Winner #3 gets 0 tokens, 0 tokens added to prize pool, Loser #1 loses 0 tokens
+[2025-01-13 11:48:47] [INFO] Battle completed: Winner #2 gets 0 tokens, 0 tokens added to prize pool, Loser #4 loses 0 tokens
+[2025-01-13 11:48:47] [INFO] Battle completed: Winner #2 gets 0 tokens, 0 tokens added to prize pool, Loser #3 loses 0 tokens
+[2025-01-13 11:48:47] [INFO] Tournament completed! Winner: Cat #2
+[2025-01-13 11:48:47] [INFO] Grand Prize Pool: 0
+[2025-01-13 11:48:47] [INFO] Total Battles: 3
+[2025-01-13 11:48:47] [INFO] Cats Eliminated: 3
+[2025-01-13 11:48:47] [INFO] Tournament completed! Winner: Cat #2
+[2025-01-13 11:48:47] [INFO] Grand Prize Pool: 0
+[2025-01-13 11:48:47] [INFO] Total Battles: 3
+[2025-01-13 11:48:47] [INFO] Cats Eliminated: 3
+[2025-01-13 11:48:47] [INFO] Updating contract with tournament results...
+[2025-01-13 11:48:47] [INFO] Starting tournament results update...
+[2025-01-13 11:48:47] [INFO] Cat #1 state: alive
+[2025-01-13 11:48:47] [INFO] Cat #1 current state: alive
+[2025-01-13 11:48:47] [INFO] Cat #4 state: alive
+[2025-01-13 11:48:47] [INFO] Cat #4 current state: alive
+[2025-01-13 11:48:47] [INFO] Cat #3 state: alive
+[2025-01-13 11:48:47] [INFO] Cat #3 current state: alive
+[2025-01-13 11:48:47] [INFO] Verified 3 cats to update to dead state
+[2025-01-13 11:48:47] [INFO] Cat #3 current balance: 0
+[2025-01-13 11:48:47] [INFO] Cat #1 current balance: 0
+[2025-01-13 11:48:47] [INFO] Cat #2 current balance: 0
+[2025-01-13 11:48:47] [INFO] Cat #4 current balance: 0
+[2025-01-13 11:48:47] [INFO] Updating states for 3 cats to 'dead'
+[2025-01-13 11:48:47] [INFO] Attempting to update states for tokens: [1, 4, 3] to state: dead
+[2025-01-13 11:48:47] [INFO] Sending transaction with gas: 500000
+[2025-01-13 11:48:48] [INFO] Transaction hash: 0x3720f7d9d1673fb0f6b3170bd5ed28fead2ef6f6c2a3285b43d54bc8ca40ba99
+[2025-01-13 11:48:51] [INFO] States update transaction confirmed: 0x3720f7d9d1673fb0f6b3170bd5ed28fead2ef6f6c2a3285b43d54bc8ca40ba99
+[2025-01-13 11:48:53] [INFO] Updating balances for 4 cats
+[2025-01-13 11:48:53] [INFO] Attempting to update balances for tokens: [3, 1, 2, 4] with amounts: [0, 0, 0, 0]
+[2025-01-13 11:48:54] [INFO] Contract owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 11:48:54] [INFO] Caller address: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7
+[2025-01-13 11:48:54] [INFO] Current balance for Cat #3: 0
+[2025-01-13 11:48:54] [INFO] Current balance for Cat #1: 0
+[2025-01-13 11:48:54] [INFO] Current balance for Cat #2: 0
+[2025-01-13 11:48:54] [INFO] Current balance for Cat #4: 0
+[2025-01-13 11:48:54] [ERROR] Gas estimation failed, using default - Error: Smart contract error
+StackTrace:    at Nethereum.Contracts.ContractRevertExceptionHandler.HandleContractRevertException(RpcResponseException rpcException)
+   at Nethereum.Contracts.ContractCall.CallAsync(CallInput callInput, BlockParameter block)
+   at Nethereum.Contracts.FunctionBase.CallAsync[TReturn](CallInput callInput)
+   at OnlyCatsConsoleApp.Services.SmartContractService.<>c__DisplayClass19_0.<<UpdateCatBalances>b__0>d.MoveNext() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 504
+[2025-01-13 11:48:54] [INFO] Sending transaction with gas: 2000000
+[2025-01-13 11:48:54] [INFO] Transaction hash: 0x45eec8f5ffd990bdc475860b86d681410c257beab036fb3f895900aba26c46a6
+[2025-01-13 11:48:58] [INFO] Balances update transaction confirmed: 0x45eec8f5ffd990bdc475860b86d681410c257beab036fb3f895900aba26c46a6
+[2025-01-13 11:49:00] [INFO] Recording 3 battles
+[2025-01-13 11:49:00] [INFO] Recording battle - Date: 1736797727, Winner: #3, Loser: #1
+[2025-01-13 11:49:00] [INFO] Cat #3 state: dead
+[2025-01-13 11:49:00] [INFO] Cat #1 state: dead
+[2025-01-13 11:49:00] [INFO] Winner #3 state: dead
+[2025-01-13 11:49:00] [INFO] Loser #1 state: dead
+[2025-01-13 11:49:00] [INFO] Sending transaction with gas: 300000
+[2025-01-13 11:49:01] [INFO] Transaction hash: 0xc29fc40c81e73ca6d4dd5c0d17633d8d67dd9e43c8dbca3837bff3e8c7fb4dc2
+[2025-01-13 11:49:04] [INFO] Battle recorded: Winner #3 vs Loser #1
+[2025-01-13 11:49:05] [INFO] Recording battle - Date: 1736797727, Winner: #2, Loser: #4
+[2025-01-13 11:49:05] [INFO] Cat #2 state: alive
+[2025-01-13 11:49:05] [INFO] Cat #4 state: dead
+[2025-01-13 11:49:05] [INFO] Winner #2 state: alive
+[2025-01-13 11:49:05] [INFO] Loser #4 state: dead
+[2025-01-13 11:49:05] [INFO] Sending transaction with gas: 300000
+[2025-01-13 11:49:06] [INFO] Transaction hash: 0x470d2cf4dc2b414aeebe3cb45b714a2158b1eeea9af9cb18f3f3c16a6185d10a
+[2025-01-13 11:49:08] [INFO] Battle recorded: Winner #2 vs Loser #4
+[2025-01-13 11:49:09] [INFO] Recording battle - Date: 1736797727, Winner: #2, Loser: #3
+[2025-01-13 11:49:09] [INFO] Cat #2 state: alive
+[2025-01-13 11:49:09] [INFO] Cat #3 state: dead
+[2025-01-13 11:49:09] [INFO] Winner #2 state: alive
+[2025-01-13 11:49:09] [INFO] Loser #3 state: dead
+[2025-01-13 11:49:09] [INFO] Sending transaction with gas: 300000
+[2025-01-13 11:49:10] [INFO] Transaction hash: 0x980078317f4f03b055bdcd6c43facfafb294b9eaf5ca24454add4d837c58d666
+[2025-01-13 11:49:12] [INFO] Battle recorded: Winner #2 vs Loser #3
+[2025-01-13 11:49:13] [INFO] Tournament results update completed successfully!
+[2025-01-13 11:49:13] [INFO] Contract updated successfully!
+[2025-01-13 12:26:22] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 12:26:24] [INFO] Contract ABI loaded successfully
+[2025-01-13 12:26:24] [INFO] Running tournament...
+[2025-01-13 12:26:24] [INFO] Getting alive cats...
+[2025-01-13 12:26:24] [INFO] Total number of cats (nextTokenId): 4
+[2025-01-13 12:26:24] [INFO] Cat #1 state: dead
+[2025-01-13 12:26:24] [INFO] Cat #1 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: dead
+[2025-01-13 12:26:25] [INFO] Cat #2 state: dead
+[2025-01-13 12:26:25] [INFO] Cat #2 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: dead
+[2025-01-13 12:26:25] [INFO] Cat #3 state: dead
+[2025-01-13 12:26:25] [INFO] Cat #3 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: dead
+[2025-01-13 12:26:25] [INFO] Checking for cats in state: alive
+[2025-01-13 12:26:25] [ERROR] Error getting cats by state: alive - Error: Function not found:getCatsByState
+StackTrace:    at Nethereum.Contracts.ContractBuilder.GetFunctionAbi(String name)
+   at Nethereum.Contracts.ContractBuilder.GetFunctionBuilder(String name)
+   at Nethereum.Contracts.Contract.GetFunctionBuilder(String name)
+   at Nethereum.Contracts.Contract.GetFunction(String name)
+   at OnlyCatsConsoleApp.Services.SmartContractService.GetCatsByState(String state) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 143
+[2025-01-13 12:26:25] [ERROR] Failed to run daily tournament - Error: Function not found:getCatsByState
+StackTrace:    at Nethereum.Contracts.ContractBuilder.GetFunctionAbi(String name)
+   at Nethereum.Contracts.ContractBuilder.GetFunctionBuilder(String name)
+   at Nethereum.Contracts.Contract.GetFunctionBuilder(String name)
+   at Nethereum.Contracts.Contract.GetFunction(String name)
+   at OnlyCatsConsoleApp.Services.SmartContractService.GetCatsByState(String state) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 143
+   at OnlyCatsConsoleApp.Services.SmartContractService.GetCatsByState(String state) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 177
+   at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 213
+[2025-01-13 12:26:25] [ERROR] Fatal error in main program - Error: Function not found:getCatsByState
+StackTrace:    at Nethereum.Contracts.ContractBuilder.GetFunctionAbi(String name)
+   at Nethereum.Contracts.ContractBuilder.GetFunctionBuilder(String name)
+   at Nethereum.Contracts.Contract.GetFunctionBuilder(String name)
+   at Nethereum.Contracts.Contract.GetFunction(String name)
+   at OnlyCatsConsoleApp.Services.SmartContractService.GetCatsByState(String state) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 143
+   at OnlyCatsConsoleApp.Services.SmartContractService.GetCatsByState(String state) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 177
+   at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 213
+   at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 312
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 42
+[2025-01-13 12:36:08] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 12:36:10] [INFO] Contract ABI loaded successfully
+[2025-01-13 12:36:10] [INFO] Running tournament...
+[2025-01-13 12:36:10] [INFO] Getting alive cats...
+[2025-01-13 12:36:10] [INFO] Total number of cats (nextTokenId): 1
+[2025-01-13 12:36:10] [INFO] Checking for cats in state: alive
+[2025-01-13 12:36:10] [INFO] Calling getCatsByState with parameter: alive
+[2025-01-13 12:36:10] [WARN] No cats found in state: alive
+[2025-01-13 12:36:10] [INFO] No alive cats found. Checking if we need to revive cats...
+[2025-01-13 12:36:10] [INFO] Checking for cats in state: dead
+[2025-01-13 12:36:10] [INFO] Calling getCatsByState with parameter: dead
+[2025-01-13 12:36:11] [WARN] No cats found in state: dead
+[2025-01-13 12:36:11] [INFO] No dead cats found either. The contract might be empty.
+[2025-01-13 12:36:11] [ERROR] Failed to run daily tournament - Error: No alive cats found to battle!
+StackTrace:    at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 222
+[2025-01-13 12:36:11] [ERROR] Fatal error in main program - Error: No alive cats found to battle!
+StackTrace:    at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 222
+   at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 305
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 42
+[2025-01-13 12:36:53] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 12:36:53] [INFO] Contract ABI loaded successfully
+[2025-01-13 12:36:53] [INFO] Running tournament...
+[2025-01-13 12:36:53] [INFO] Getting alive cats...
+[2025-01-13 12:36:54] [INFO] Total number of cats (nextTokenId): 1
+[2025-01-13 12:36:54] [WARN] No cats have been minted yet. Skipping tournament.
+[2025-01-13 12:36:54] [INFO] Tournament completed! Winner: Cat #0
+[2025-01-13 12:36:54] [INFO] Grand Prize Pool: 0
+[2025-01-13 12:36:54] [INFO] Total Battles: 0
+[2025-01-13 12:36:54] [INFO] Cats Eliminated: 0
+[2025-01-13 12:36:54] [INFO] Updating contract with tournament results...
+[2025-01-13 12:36:54] [INFO] Starting tournament results update...
+[2025-01-13 12:36:54] [INFO] Tournament results update completed successfully!
+[2025-01-13 12:36:54] [INFO] Contract updated successfully!
+[2025-01-13 12:39:07] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 12:39:07] [INFO] Contract ABI loaded successfully
+[2025-01-13 12:39:07] [INFO] Running tournament...
+[2025-01-13 12:39:07] [INFO] Getting alive cats...
+[2025-01-13 12:39:07] [INFO] Total number of cats (nextTokenId): 2
+[2025-01-13 12:39:08] [INFO] Cat #1 state: dead
+[2025-01-13 12:39:08] [INFO] Cat #1 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: dead
+[2025-01-13 12:39:08] [INFO] Checking for cats in state: alive
+[2025-01-13 12:39:08] [INFO] Calling getCatsByState with parameter: alive
+[2025-01-13 12:39:08] [WARN] No cats found in state: alive
+[2025-01-13 12:39:08] [INFO] No alive cats found. Checking if we need to revive cats...
+[2025-01-13 12:39:08] [INFO] Checking for cats in state: dead
+[2025-01-13 12:39:08] [INFO] Calling getCatsByState with parameter: dead
+[2025-01-13 12:39:08] [INFO] getCatsByState returned 1 cats
+[2025-01-13 12:39:08] [INFO] Cat IDs: [1]
+[2025-01-13 12:39:08] [WARN] Found 1 dead cats. Consider reviving them using the reviveAllCats function.
+[2025-01-13 12:39:08] [WARN] Skipping tournament until cats are revived.
+[2025-01-13 12:39:08] [INFO] Tournament completed! Winner: Cat #0
+[2025-01-13 12:39:08] [INFO] Grand Prize Pool: 0
+[2025-01-13 12:39:08] [INFO] Total Battles: 0
+[2025-01-13 12:39:08] [INFO] Cats Eliminated: 0
+[2025-01-13 12:39:08] [INFO] Updating contract with tournament results...
+[2025-01-13 12:39:08] [INFO] Starting tournament results update...
+[2025-01-13 12:39:08] [INFO] Tournament results update completed successfully!
+[2025-01-13 12:39:08] [INFO] Contract updated successfully!
+[2025-01-13 16:36:12] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 16:36:13] [INFO] Contract ABI loaded successfully
+[2025-01-13 16:36:13] [INFO] Running tournament...
+[2025-01-13 16:36:13] [INFO] Getting alive cats...
+[2025-01-13 16:36:13] [INFO] Total number of cats (nextTokenId): 1
+[2025-01-13 16:36:13] [WARN] No cats have been minted yet. Skipping tournament.
+[2025-01-13 16:36:13] [INFO] Tournament completed! Winner: Cat #0
+[2025-01-13 16:36:13] [INFO] Grand Prize Pool: 0
+[2025-01-13 16:36:13] [INFO] Total Battles: 0
+[2025-01-13 16:36:13] [INFO] Cats Eliminated: 0
+[2025-01-13 16:36:13] [INFO] Updating contract with tournament results...
+[2025-01-13 16:36:13] [INFO] Starting tournament results update...
+[2025-01-13 16:36:13] [INFO] Tournament results update completed successfully!
+[2025-01-13 16:36:13] [INFO] Contract updated successfully!
+[2025-01-13 16:54:17] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 16:54:17] [INFO] Contract ABI loaded successfully
+[2025-01-13 16:54:17] [INFO] Running tournament...
+[2025-01-13 16:54:17] [INFO] Getting alive cats...
+[2025-01-13 16:54:18] [INFO] Total number of cats (nextTokenId): 4
+[2025-01-13 16:54:18] [INFO] Cat #1 state: alive
+[2025-01-13 16:54:18] [INFO] Cat #1 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 16:54:18] [INFO] Cat #2 state: alive
+[2025-01-13 16:54:18] [INFO] Cat #2 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 16:54:18] [INFO] Cat #3 state: alive
+[2025-01-13 16:54:18] [INFO] Cat #3 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 16:54:18] [INFO] Checking for cats in state: alive
+[2025-01-13 16:54:18] [INFO] Calling getCatsByState with parameter: alive
+[2025-01-13 16:54:18] [WARN] No cats found in state: alive
+[2025-01-13 16:54:18] [INFO] No alive cats found. Checking if we need to revive cats...
+[2025-01-13 16:54:18] [INFO] Checking for cats in state: dead
+[2025-01-13 16:54:18] [INFO] Calling getCatsByState with parameter: dead
+[2025-01-13 16:54:18] [WARN] No cats found in state: dead
+[2025-01-13 16:54:18] [WARN] No dead cats found either. The contract might be empty.
+[2025-01-13 16:54:18] [INFO] Tournament completed! Winner: Cat #0
+[2025-01-13 16:54:18] [INFO] Grand Prize Pool: 0
+[2025-01-13 16:54:18] [INFO] Total Battles: 0
+[2025-01-13 16:54:18] [INFO] Cats Eliminated: 0
+[2025-01-13 16:54:18] [INFO] Updating contract with tournament results...
+[2025-01-13 16:54:18] [INFO] Starting tournament results update...
+[2025-01-13 16:54:18] [INFO] Tournament results update completed successfully!
+[2025-01-13 16:54:18] [INFO] Contract updated successfully!
+[2025-01-13 16:55:32] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 16:55:34] [INFO] Contract ABI loaded successfully
+[2025-01-13 16:55:34] [INFO] Running tournament...
+[2025-01-13 16:55:34] [INFO] Getting alive cats...
+[2025-01-13 16:55:34] [INFO] Total number of cats (nextTokenId): 4
+[2025-01-13 16:55:34] [INFO] Cat #1 state: alive
+[2025-01-13 16:55:34] [INFO] Cat #1 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 16:55:35] [INFO] Cat #2 state: alive
+[2025-01-13 16:55:35] [INFO] Cat #2 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 16:55:35] [INFO] Cat #3 state: alive
+[2025-01-13 16:55:35] [INFO] Cat #3 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 16:55:35] [INFO] Checking for cats in state: alive
+[2025-01-13 16:55:35] [INFO] Calling getCatsByState with parameter: alive
+[2025-01-13 16:55:35] [WARN] No cats found in state: alive
+[2025-01-13 16:55:35] [INFO] No alive cats found. Checking if we need to revive cats...
+[2025-01-13 16:55:35] [INFO] Checking for cats in state: dead
+[2025-01-13 16:55:35] [INFO] Calling getCatsByState with parameter: dead
+[2025-01-13 16:55:35] [WARN] No cats found in state: dead
+[2025-01-13 16:55:35] [WARN] No dead cats found either. The contract might be empty.
+[2025-01-13 16:55:35] [INFO] Tournament completed! Winner: Cat #0
+[2025-01-13 16:55:35] [INFO] Grand Prize Pool: 0
+[2025-01-13 16:55:35] [INFO] Total Battles: 0
+[2025-01-13 16:55:35] [INFO] Cats Eliminated: 0
+[2025-01-13 16:55:35] [INFO] Updating contract with tournament results...
+[2025-01-13 16:55:35] [INFO] Starting tournament results update...
+[2025-01-13 16:55:35] [INFO] Tournament results update completed successfully!
+[2025-01-13 16:55:35] [INFO] Contract updated successfully!
+[2025-01-13 17:16:00] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 17:16:02] [INFO] Contract ABI loaded successfully
+[2025-01-13 17:16:02] [INFO] Running tournament...
+[2025-01-13 17:16:02] [INFO] Getting alive cats...
+[2025-01-13 17:16:02] [INFO] Total number of cats (nextTokenId): 3
+[2025-01-13 17:16:02] [INFO] Cat #1 state: dead (state number: 0)
+[2025-01-13 17:16:02] [INFO] Cat #1 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: dead
+[2025-01-13 17:16:02] [INFO] Cat #2 state: dead (state number: 0)
+[2025-01-13 17:16:02] [INFO] Cat #2 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: dead
+[2025-01-13 17:16:02] [INFO] Checking for cats in state: alive (state number: 1)
+[2025-01-13 17:16:02] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-13 17:16:03] [WARN] No cats found in state: alive
+[2025-01-13 17:16:03] [INFO] No alive cats found. Checking if we need to revive cats...
+[2025-01-13 17:16:03] [INFO] Checking for cats in state: dead (state number: 0)
+[2025-01-13 17:16:03] [INFO] Calling getCatsByState with parameter: 0
+[2025-01-13 17:16:03] [INFO] getCatsByState returned 2 cats
+[2025-01-13 17:16:03] [INFO] Cat IDs: [1, 2]
+[2025-01-13 17:16:03] [WARN] Found 2 dead cats. Consider reviving them using the reviveAllCats function.
+[2025-01-13 17:16:03] [WARN] Skipping tournament until cats are revived.
+[2025-01-13 17:16:03] [INFO] Tournament completed! Winner: Cat #0
+[2025-01-13 17:16:03] [INFO] Grand Prize Pool: 0
+[2025-01-13 17:16:03] [INFO] Total Battles: 0
+[2025-01-13 17:16:03] [INFO] Cats Eliminated: 0
+[2025-01-13 17:16:03] [INFO] Updating contract with tournament results...
+[2025-01-13 17:16:03] [INFO] Starting tournament results update...
+[2025-01-13 17:16:03] [INFO] Tournament results update completed successfully!
+[2025-01-13 17:16:03] [INFO] Contract updated successfully!
+[2025-01-13 17:24:45] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 17:24:47] [INFO] Contract ABI loaded successfully
+[2025-01-13 17:24:47] [INFO] Running tournament...
+[2025-01-13 17:24:47] [INFO] Getting alive cats...
+[2025-01-13 17:24:47] [INFO] Total number of cats (nextTokenId): 3
+[2025-01-13 17:24:48] [INFO] Cat #1 state: alive (state number: 1)
+[2025-01-13 17:24:48] [INFO] Cat #1 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 17:24:48] [INFO] Cat #2 state: alive (state number: 1)
+[2025-01-13 17:24:48] [INFO] Cat #2 - Owner: 0x77d5F8DaFb5F9B2b52c50179fC6393F0F68CE7c7, State: alive
+[2025-01-13 17:24:48] [INFO] Checking for cats in state: alive (state number: 1)
+[2025-01-13 17:24:48] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-13 17:24:48] [INFO] getCatsByState returned 2 cats
+[2025-01-13 17:24:48] [INFO] Cat IDs: [1, 2]
+[2025-01-13 17:24:48] [INFO] Found 2 alive cats
+[2025-01-13 17:24:48] [INFO] Cat #1 balance: 0
+[2025-01-13 17:24:48] [INFO] Cat #2 balance: 0
+[2025-01-13 17:24:48] [INFO] Cat #1 stake: 0, Cat #2 stake: 0
+[2025-01-13 17:24:48] [INFO] Battle completed: Winner #1 gets 0 tokens, 0 tokens added to prize pool, Loser #2 loses 0 tokens
+[2025-01-13 17:24:48] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 17:24:48] [INFO] Grand Prize Pool: 0
+[2025-01-13 17:24:48] [INFO] Total Battles: 1
+[2025-01-13 17:24:48] [INFO] Cats Eliminated: 1
+[2025-01-13 17:24:48] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 17:24:48] [INFO] Grand Prize Pool: 0
+[2025-01-13 17:24:48] [INFO] Total Battles: 1
+[2025-01-13 17:24:48] [INFO] Cats Eliminated: 1
+[2025-01-13 17:24:48] [INFO] Updating contract with tournament results...
+[2025-01-13 17:24:48] [INFO] Starting tournament results update...
+[2025-01-13 17:24:48] [INFO] Cat #1 balance: 0
+[2025-01-13 17:24:48] [INFO] Cat #1 - Current balance: 0, Update amount: 0, New balance will be: 0
+[2025-01-13 17:24:48] [INFO] Cat #2 balance: 0
+[2025-01-13 17:24:48] [INFO] Cat #2 - Current balance: 0, Update amount: 0, New balance will be: 0
+[2025-01-13 17:24:48] [INFO] Sending balance update transaction with gas: 500000
+[2025-01-13 17:24:49] [INFO] Transaction hash: 0x5021956a5d7c8ff98a77d5f1b2e64a1baa940c2a7c4bb33ab2631f6fa7e6d0bd
+[2025-01-13 17:24:51] [INFO] Balance updates completed
+[2025-01-13 17:24:51] [INFO] Updating states for 1 cats
+[2025-01-13 17:24:52] [INFO] State update transaction hash: 0xe128c1df769a11f42afd56843308431965d2fc3a46e07b3f1b23eedc97150d17
+[2025-01-13 17:24:54] [INFO] State updates completed
+[2025-01-13 17:24:54] [INFO] Recording battle - Date: 1736817888, Winner: #1, Loser: #2
+[2025-01-13 17:24:54] [INFO] Battle record transaction hash: 0x7c05792ea79091b5fe830709a6e10885587d761b72adac4d8ed7d1f13b5c7ba2
+[2025-01-13 17:24:58] [INFO] Recorded battles 1 to 1
+[2025-01-13 17:24:58] [INFO] Tournament results update completed successfully!
+[2025-01-13 17:24:58] [INFO] Contract updated successfully!
+[2025-01-13 19:19:57] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 19:19:58] [INFO] Contract ABI loaded successfully
+[2025-01-13 19:19:58] [INFO] Running tournament...
+[2025-01-13 19:19:58] [INFO] Getting alive cats...
+[2025-01-13 19:19:59] [INFO] Total number of cats (nextTokenId): 3
+[2025-01-13 19:19:59] [INFO] Required stake per cat: 10000000000000000
+[2025-01-13 19:19:59] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-13 19:19:59] [INFO] getCatsByState returned 2 cats
+[2025-01-13 19:19:59] [INFO] Cat IDs: [1, 2]
+[2025-01-13 19:19:59] [INFO] Tournament winner (Cat #1) receives pool of 5000000000000000
+[2025-01-13 19:19:59] [INFO] Cat #1 balance update: +10000000000000000
+[2025-01-13 19:19:59] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 19:19:59] [INFO] Grand Prize Pool: 5000000000000000
+[2025-01-13 19:19:59] [INFO] Total Battles: 1
+[2025-01-13 19:19:59] [INFO] Cats Eliminated: 1
+[2025-01-13 19:19:59] [INFO] Updating contract with tournament results...
+[2025-01-13 19:19:59] [INFO] Starting tournament results update...
+[2025-01-13 19:19:59] [INFO] Cat #1 balance: 0
+[2025-01-13 19:19:59] [INFO] Cat #1 - Current balance: 0, Update amount: 10000000000000000, New balance will be: 10000000000000000
+[2025-01-13 19:19:59] [INFO] Sending balance update transaction with gas: 500000
+[2025-01-13 19:20:00] [INFO] Transaction hash: 0x62e7eb721b1b10ed1858cf52eab6c83ace98576ef3bf424bed64d81362760844
+[2025-01-13 19:20:02] [INFO] Balance updates completed
+[2025-01-13 19:20:02] [INFO] Updating states for 1 cats
+[2025-01-13 19:20:03] [INFO] State update transaction hash: 0x1573828e9735efe98c57c979a815aff462c096981301b25bca286b4a98556962
+[2025-01-13 19:20:05] [INFO] State updates completed
+[2025-01-13 19:20:05] [INFO] Recording battle - Date: 1736824799, Winner: #1, Loser: #2
+[2025-01-13 19:20:06] [INFO] Battle record transaction hash: 0x0a177120159702794a1fcafa22feee325395f2d85807da12c903124a34b9acc8
+[2025-01-13 19:20:08] [INFO] Recorded battles 1 to 1
+[2025-01-13 19:20:08] [INFO] Tournament results update completed successfully!
+[2025-01-13 19:20:08] [INFO] Contract updated successfully!
+[2025-01-13 19:24:02] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 19:24:02] [INFO] Contract ABI loaded successfully
+[2025-01-13 19:24:02] [INFO] Running tournament...
+[2025-01-13 19:24:02] [INFO] Getting alive cats...
+[2025-01-13 19:24:03] [INFO] Total number of cats (nextTokenId): 4
+[2025-01-13 19:24:03] [INFO] Required stake per cat: 10000000000000000
+[2025-01-13 19:24:03] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-13 19:24:03] [INFO] getCatsByState returned 3 cats
+[2025-01-13 19:24:03] [INFO] Cat IDs: [1, 2, 3]
+[2025-01-13 19:24:03] [ERROR] Failed to run daily tournament - Error: Sequence contains more than one element
+StackTrace:    at System.Linq.ThrowHelper.ThrowMoreThanOneElementException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 289
+[2025-01-13 19:24:03] [ERROR] Fatal error in main program - Error: Sequence contains more than one element
+StackTrace:    at System.Linq.ThrowHelper.ThrowMoreThanOneElementException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 289
+   at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 317
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 42
+[2025-01-13 19:26:56] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 19:26:56] [INFO] Contract ABI loaded successfully
+[2025-01-13 19:26:56] [INFO] Running tournament...
+[2025-01-13 19:26:56] [INFO] Getting alive cats...
+[2025-01-13 19:26:57] [INFO] Total number of cats (nextTokenId): 4
+[2025-01-13 19:26:57] [INFO] Required stake per cat: 10000000000000000
+[2025-01-13 19:26:57] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-13 19:26:57] [INFO] getCatsByState returned 3 cats
+[2025-01-13 19:26:57] [INFO] Cat IDs: [1, 2, 3]
+[2025-01-13 19:26:57] [INFO] Multiple cats remained after battles. Randomly selected Cat #2 as the tournament winner.
+[2025-01-13 19:26:57] [ERROR] Failed to run daily tournament - Error: Sequence contains more than one element
+StackTrace:    at System.Linq.ThrowHelper.ThrowMoreThanOneElementException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 310
+[2025-01-13 19:26:57] [ERROR] Fatal error in main program - Error: Sequence contains more than one element
+StackTrace:    at System.Linq.ThrowHelper.ThrowMoreThanOneElementException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 310
+   at OnlyCatsConsoleApp.Services.SmartContractService.RunDailyTournament() in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Services\SmartContractService.cs:line 335
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 42
+[2025-01-13 19:27:47] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 19:27:49] [INFO] Contract ABI loaded successfully
+[2025-01-13 19:27:49] [INFO] Running tournament...
+[2025-01-13 19:27:49] [INFO] Getting alive cats...
+[2025-01-13 19:27:49] [INFO] Total number of cats (nextTokenId): 4
+[2025-01-13 19:27:49] [INFO] Required stake per cat: 10000000000000000
+[2025-01-13 19:27:49] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-13 19:27:49] [INFO] getCatsByState returned 3 cats
+[2025-01-13 19:27:49] [INFO] Cat IDs: [1, 2, 3]
+[2025-01-13 19:27:49] [INFO] Multiple cats remained after battles. Randomly selected Cat #1 as the tournament winner.
+[2025-01-13 19:27:49] [INFO] Tournament winner (Cat #1) receives pool of 5000000000000000
+[2025-01-13 19:27:49] [INFO] Cat #1 balance update: +10000000000000000
+[2025-01-13 19:27:49] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 19:27:49] [INFO] Grand Prize Pool: 5000000000000000
+[2025-01-13 19:27:49] [INFO] Total Battles: 1
+[2025-01-13 19:27:49] [INFO] Cats Eliminated: 2
+[2025-01-13 19:27:49] [INFO] Updating contract with tournament results...
+[2025-01-13 19:27:49] [INFO] Starting tournament results update...
+[2025-01-13 19:27:50] [INFO] Cat #1 balance: 10000000000000000
+[2025-01-13 19:27:50] [INFO] Cat #1 - Current balance: 10000000000000000, Update amount: 10000000000000000, New balance will be: 20000000000000000
+[2025-01-13 19:27:50] [INFO] Sending balance update transaction with gas: 500000
+[2025-01-13 19:27:51] [INFO] Transaction hash: 0x6e1d954df798a0535bb5ba0b6e0c0858f88bf1ee0fe22220b812c9183bfc27ba
+[2025-01-13 19:27:54] [INFO] Balance updates completed
+[2025-01-13 19:27:54] [INFO] Updating states for 2 cats
+[2025-01-13 19:27:55] [INFO] State update transaction hash: 0x1d8b93dac0257da0bc7dddef9003dccf680b64952db8fed2165255c230367e7a
+[2025-01-13 19:27:58] [INFO] State updates completed
+[2025-01-13 19:27:58] [INFO] Recording battle - Date: 1736825269, Winner: #1, Loser: #3
+[2025-01-13 19:27:58] [INFO] Battle record transaction hash: 0x3f8f7290a2a82798d75ab959a4cb3ffdd8ee5350976b26b517068c2728bf8680
+[2025-01-13 19:28:00] [INFO] Recorded battles 1 to 1
+[2025-01-13 19:28:00] [INFO] Tournament results update completed successfully!
+[2025-01-13 19:28:00] [INFO] Contract updated successfully!
+[2025-01-13 19:28:36] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 19:28:36] [INFO] Contract ABI loaded successfully
+[2025-01-13 19:28:36] [INFO] Running tournament...
+[2025-01-13 19:28:36] [INFO] Getting alive cats...
+[2025-01-13 19:28:36] [INFO] Total number of cats (nextTokenId): 4
+[2025-01-13 19:28:36] [INFO] Required stake per cat: 10000000000000000
+[2025-01-13 19:28:36] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-13 19:28:36] [INFO] getCatsByState returned 3 cats
+[2025-01-13 19:28:36] [INFO] Cat IDs: [1, 2, 3]
+[2025-01-13 19:28:36] [INFO] Multiple cats remained after battles. Randomly selected Cat #3 as the tournament winner.
+[2025-01-13 19:28:36] [INFO] Tournament winner (Cat #3) receives pool of 5000000000000000
+[2025-01-13 19:28:36] [INFO] Cat #3 balance update: +10000000000000000
+[2025-01-13 19:28:36] [INFO] Tournament completed! Winner: Cat #3
+[2025-01-13 19:28:36] [INFO] Grand Prize Pool: 5000000000000000
+[2025-01-13 19:28:36] [INFO] Total Battles: 1
+[2025-01-13 19:28:36] [INFO] Cats Eliminated: 2
+[2025-01-13 19:28:36] [INFO] Updating contract with tournament results...
+[2025-01-13 19:28:36] [INFO] Starting tournament results update...
+[2025-01-13 19:28:37] [INFO] Cat #3 balance: 0
+[2025-01-13 19:28:37] [INFO] Cat #3 - Current balance: 0, Update amount: 10000000000000000, New balance will be: 10000000000000000
+[2025-01-13 19:28:37] [INFO] Sending balance update transaction with gas: 500000
+[2025-01-13 19:28:37] [INFO] Transaction hash: 0x3a2105f93f703f17df09d74a0ff87d49969cd552bc2271320e3b03843c0e0c2a
+[2025-01-13 19:28:41] [INFO] Balance updates completed
+[2025-01-13 19:28:41] [INFO] Updating states for 2 cats
+[2025-01-13 19:28:41] [INFO] State update transaction hash: 0xa5205c47df9328fce8457edbe6853986591f609228964ce65052dfb74ec63d9b
+[2025-01-13 19:28:44] [INFO] State updates completed
+[2025-01-13 19:28:44] [INFO] Recording battle - Date: 1736825316, Winner: #3, Loser: #2
+[2025-01-13 19:28:45] [INFO] Battle record transaction hash: 0x3fa2845a7e5eb64e89f3886aab8ab3b7e706cf7ec9fe7ea3899fd66dd789022b
+[2025-01-13 19:28:48] [INFO] Recorded battles 1 to 1
+[2025-01-13 19:28:48] [INFO] Tournament results update completed successfully!
+[2025-01-13 19:28:48] [INFO] Contract updated successfully!
+[2025-01-13 19:31:48] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 19:31:48] [INFO] Contract ABI loaded successfully
+[2025-01-13 19:31:48] [INFO] Running tournament...
+[2025-01-13 19:31:48] [INFO] Getting alive cats...
+[2025-01-13 19:31:48] [INFO] Total number of cats (nextTokenId): 6
+[2025-01-13 19:31:48] [INFO] Required stake per cat: 10000000000000000
+[2025-01-13 19:31:48] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-13 19:31:49] [INFO] getCatsByState returned 5 cats
+[2025-01-13 19:31:49] [INFO] Cat IDs: [1, 2, 3, 4, 5]
+[2025-01-13 19:31:49] [INFO] Multiple cats remained after battles. Randomly selected Cat #1 as the tournament winner.
+[2025-01-13 19:31:49] [INFO] Tournament winner (Cat #1) receives pool of 10000000000000000
+[2025-01-13 19:31:49] [INFO] Cat #2 balance update: +5000000000000000
+[2025-01-13 19:31:49] [INFO] Cat #1 balance update: +15000000000000000
+[2025-01-13 19:31:49] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 19:31:49] [INFO] Grand Prize Pool: 10000000000000000
+[2025-01-13 19:31:49] [INFO] Total Battles: 2
+[2025-01-13 19:31:49] [INFO] Cats Eliminated: 4
+[2025-01-13 19:31:49] [INFO] Updating contract with tournament results...
+[2025-01-13 19:31:49] [INFO] Starting tournament results update...
+[2025-01-13 19:31:49] [INFO] Cat #2 balance: 0
+[2025-01-13 19:31:49] [INFO] Cat #2 - Current balance: 0, Update amount: 5000000000000000, New balance will be: 5000000000000000
+[2025-01-13 19:31:49] [INFO] Cat #1 balance: 20000000000000000
+[2025-01-13 19:31:49] [INFO] Cat #1 - Current balance: 20000000000000000, Update amount: 15000000000000000, New balance will be: 35000000000000000
+[2025-01-13 19:31:49] [INFO] Sending balance update transaction with gas: 500000
+[2025-01-13 19:31:49] [INFO] Transaction hash: 0xe6fd2b926bda0733220285549caf51886272d5b55e7dd9235deb91ca857a9814
+[2025-01-13 19:31:52] [INFO] Balance updates completed
+[2025-01-13 19:31:52] [INFO] Updating states for 4 cats
+[2025-01-13 19:31:52] [INFO] State update transaction hash: 0x599ef03d20ea2f39b000e3a79444be1c4f0a7f3e97df11affb191c0dc8a69085
+[2025-01-13 19:31:55] [INFO] State updates completed
+[2025-01-13 19:31:55] [INFO] Recording battle - Date: 1736825509, Winner: #2, Loser: #3
+[2025-01-13 19:31:55] [INFO] Recording battle - Date: 1736825509, Winner: #1, Loser: #4
+[2025-01-13 19:31:55] [INFO] Battle record transaction hash: 0x5f6d14beac7d432541ee48962390af72f8cd288f9dcf4dd4072dfeb1064992fe
+[2025-01-13 19:31:56] [INFO] Battle record transaction hash: 0xb01a07be463f7972a568d005c5785ab2f183f96d0309c9a8a32668e954480b73
+[2025-01-13 19:31:58] [INFO] Recorded battles 1 to 2
+[2025-01-13 19:31:58] [INFO] Tournament results update completed successfully!
+[2025-01-13 19:31:58] [INFO] Contract updated successfully!
+[2025-01-13 19:32:37] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 19:32:38] [INFO] Contract ABI loaded successfully
+[2025-01-13 19:32:38] [INFO] Running tournament...
+[2025-01-13 19:32:38] [INFO] Getting alive cats...
+[2025-01-13 19:32:38] [INFO] Total number of cats (nextTokenId): 6
+[2025-01-13 19:32:38] [INFO] Required stake per cat: 10000000000000000
+[2025-01-13 19:32:38] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-13 19:32:38] [INFO] getCatsByState returned 5 cats
+[2025-01-13 19:32:38] [INFO] Cat IDs: [1, 2, 3, 4, 5]
+[2025-01-13 19:32:38] [INFO] Multiple cats remained after battles. Randomly selected Cat #2 as the tournament winner.
+[2025-01-13 19:32:38] [INFO] Tournament winner (Cat #2) receives pool of 10000000000000000
+[2025-01-13 19:32:38] [INFO] Cat #5 balance update: +5000000000000000
+[2025-01-13 19:32:38] [INFO] Cat #3 balance update: +5000000000000000
+[2025-01-13 19:32:38] [INFO] Cat #2 balance update: +10000000000000000
+[2025-01-13 19:32:38] [INFO] Tournament completed! Winner: Cat #2
+[2025-01-13 19:32:38] [INFO] Grand Prize Pool: 10000000000000000
+[2025-01-13 19:32:38] [INFO] Total Battles: 2
+[2025-01-13 19:32:38] [INFO] Cats Eliminated: 4
+[2025-01-13 19:32:38] [INFO] Updating contract with tournament results...
+[2025-01-13 19:32:38] [INFO] Starting tournament results update...
+[2025-01-13 19:32:38] [INFO] Cat #5 balance: 0
+[2025-01-13 19:32:38] [INFO] Cat #5 - Current balance: 0, Update amount: 5000000000000000, New balance will be: 5000000000000000
+[2025-01-13 19:32:38] [INFO] Cat #3 balance: 10000000000000000
+[2025-01-13 19:32:38] [INFO] Cat #3 - Current balance: 10000000000000000, Update amount: 5000000000000000, New balance will be: 15000000000000000
+[2025-01-13 19:32:38] [INFO] Cat #2 balance: 5000000000000000
+[2025-01-13 19:32:38] [INFO] Cat #2 - Current balance: 5000000000000000, Update amount: 10000000000000000, New balance will be: 15000000000000000
+[2025-01-13 19:32:38] [INFO] Sending balance update transaction with gas: 500000
+[2025-01-13 19:32:39] [INFO] Transaction hash: 0xac9d6861e7514963c03f8b729ebe063e51f910b4b707c647dc364d0f5d1d65de
+[2025-01-13 19:32:42] [INFO] Balance updates completed
+[2025-01-13 19:32:42] [INFO] Updating states for 4 cats
+[2025-01-13 19:32:43] [INFO] State update transaction hash: 0x528f88d5392b6c2ee025ade0620e2030fb72302fcbd67f8a6c733f856aff6efc
+[2025-01-13 19:32:46] [INFO] State updates completed
+[2025-01-13 19:32:46] [INFO] Recording battle - Date: 1736825558, Winner: #5, Loser: #4
+[2025-01-13 19:32:46] [INFO] Recording battle - Date: 1736825558, Winner: #3, Loser: #1
+[2025-01-13 19:32:47] [INFO] Battle record transaction hash: 0x12332240e82adac64408f5035f4d2350eb8490af38ec27948d56966cbf9fbb30
+[2025-01-13 19:32:47] [INFO] Battle record transaction hash: 0xf38ab6acaa6f0390c93b94fac6627e3e79a742077a3002f05707b6080a996a84
+[2025-01-13 19:32:50] [INFO] Recorded battles 1 to 2
+[2025-01-13 19:32:50] [INFO] Tournament results update completed successfully!
+[2025-01-13 19:32:50] [INFO] Contract updated successfully!
+[2025-01-13 19:35:52] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 19:35:52] [INFO] Contract ABI loaded successfully
+[2025-01-13 19:35:52] [INFO] Running tournament...
+[2025-01-13 19:35:52] [INFO] Getting alive cats...
+[2025-01-13 19:35:53] [INFO] Total number of cats (nextTokenId): 6
+[2025-01-13 19:35:53] [INFO] Required stake per cat: 10000000000000000
+[2025-01-13 19:35:53] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-13 19:35:53] [INFO] getCatsByState returned 5 cats
+[2025-01-13 19:35:53] [INFO] Cat IDs: [1, 2, 3, 4, 5]
+[2025-01-13 19:35:53] [INFO] Multiple cats remained after battles. Randomly selected Cat #1 as the tournament winner.
+[2025-01-13 19:35:53] [INFO] Tournament winner (Cat #1) receives pool of 10000000000000000
+[2025-01-13 19:35:53] [INFO] Cat #5 balance update: +5000000000000000
+[2025-01-13 19:35:53] [INFO] Cat #1 balance update: +15000000000000000
+[2025-01-13 19:35:53] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 19:35:53] [INFO] Grand Prize Pool: 10000000000000000
+[2025-01-13 19:35:53] [INFO] Total Battles: 2
+[2025-01-13 19:35:53] [INFO] Cats Eliminated: 4
+[2025-01-13 19:35:53] [INFO] Updating contract with tournament results...
+[2025-01-13 19:35:53] [INFO] Starting tournament results update...
+[2025-01-13 19:35:53] [INFO] Cat #5 balance: 0
+[2025-01-13 19:35:53] [INFO] Cat #5 - Current balance: 0, Update amount: 5000000000000000, New balance will be: 5000000000000000
+[2025-01-13 19:35:53] [INFO] Cat #1 balance: 0
+[2025-01-13 19:35:53] [INFO] Cat #1 - Current balance: 0, Update amount: 15000000000000000, New balance will be: 15000000000000000
+[2025-01-13 19:35:53] [INFO] Sending balance update transaction with gas: 500000
+[2025-01-13 19:35:53] [INFO] Transaction hash: 0xd742918796572184498b615c5cbe45c692b2647f67298006c870da581fef81ed
+[2025-01-13 19:35:56] [INFO] Balance updates completed
+[2025-01-13 19:35:56] [INFO] Updating states for 4 cats
+[2025-01-13 19:35:56] [INFO] State update transaction hash: 0x4ea3879ecd14d9c4d83d6d609780df33f5eaa961d0e95b25b0f1464bd046b198
+[2025-01-13 19:35:57] [INFO] State updates completed
+[2025-01-13 19:35:57] [INFO] Recording battle - Date: 1736825753, Winner: #5, Loser: #3
+[2025-01-13 19:35:57] [INFO] Recording battle - Date: 1736825753, Winner: #1, Loser: #4
+[2025-01-13 19:35:58] [INFO] Battle record transaction hash: 0xbf04eb793da404f16b385dfbb285c367bd26b2c72990305927be75a485ae1057
+[2025-01-13 19:35:58] [INFO] Battle record transaction hash: 0x9c35923e458a2b0ef58b51d8c3f6e04c8b1dd59dd4d18b86519445aac9427c22
+[2025-01-13 19:35:59] [INFO] Recorded battles 1 to 2
+[2025-01-13 19:35:59] [INFO] Tournament results update completed successfully!
+[2025-01-13 19:35:59] [INFO] Contract updated successfully!
+[2025-01-13 19:39:07] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 19:39:07] [INFO] Contract ABI loaded successfully
+[2025-01-13 19:39:07] [INFO] Running tournament...
+[2025-01-13 19:39:07] [INFO] Getting alive cats...
+[2025-01-13 19:39:07] [INFO] Total number of cats (nextTokenId): 6
+[2025-01-13 19:39:07] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-13 19:39:07] [INFO] getCatsByState returned 1 cats
+[2025-01-13 19:39:07] [INFO] Cat IDs: [1]
+[2025-01-13 19:39:08] [INFO] Required stake per cat: 10000000000000000
+[2025-01-13 19:39:08] [INFO] Created 0 battle pairs
+[2025-01-13 19:39:08] [INFO] 1 cats remaining after battles
+[2025-01-13 19:39:08] [INFO] Cat #1 wins the tournament!
+[2025-01-13 19:39:08] [INFO] Tournament winner (Cat #1) receives pool of 0
+[2025-01-13 19:39:08] [INFO] Cat #1 final balance update: +0
+[2025-01-13 19:39:08] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 19:39:08] [INFO] Grand Prize Pool: 0
+[2025-01-13 19:39:08] [INFO] Total Battles: 0
+[2025-01-13 19:39:08] [INFO] Cats Eliminated: 0
+[2025-01-13 19:39:08] [INFO] Updating contract with tournament results...
+[2025-01-13 19:39:08] [INFO] Starting tournament results update...
+[2025-01-13 19:39:08] [INFO] Cat #1 balance: 15000000000000000
+[2025-01-13 19:39:08] [INFO] Cat #1 - Current balance: 15000000000000000, Update amount: 0, New balance will be: 15000000000000000
+[2025-01-13 19:39:08] [INFO] Sending balance update transaction with gas: 500000
+[2025-01-13 19:39:08] [INFO] Transaction hash: 0xe91bbe6c269a18d9bb9d585df8ca679c32cc17cb21fb6b0802a47911489b0bfd
+[2025-01-13 19:39:11] [INFO] Balance updates completed
+[2025-01-13 19:39:11] [INFO] Tournament results update completed successfully!
+[2025-01-13 19:39:11] [INFO] Contract updated successfully!
+[2025-01-13 19:40:19] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 19:40:19] [INFO] Contract ABI loaded successfully
+[2025-01-13 19:40:19] [INFO] Running tournament...
+[2025-01-13 19:40:19] [INFO] Getting alive cats...
+[2025-01-13 19:40:19] [INFO] Total number of cats (nextTokenId): 6
+[2025-01-13 19:40:19] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-13 19:40:19] [INFO] getCatsByState returned 5 cats
+[2025-01-13 19:40:19] [INFO] Cat IDs: [1, 2, 3, 4, 5]
+[2025-01-13 19:40:19] [INFO] Required stake per cat: 10000000000000000
+[2025-01-13 19:40:19] [INFO] Created 2 battle pairs
+[2025-01-13 19:40:19] [INFO] Battle: Cat #2 defeats Cat #4
+[2025-01-13 19:40:19] [INFO] Battle: Cat #5 defeats Cat #3
+[2025-01-13 19:40:19] [INFO] 3 cats remaining after battles
+[2025-01-13 19:40:19] [INFO] Multiple cats remained. Randomly selected Cat #1 as tournament winner
+[2025-01-13 19:40:19] [INFO] Eliminated cats: #4, #3, #2, #5
+[2025-01-13 19:40:19] [INFO] Tournament winner (Cat #1) receives pool of 10000000000000000
+[2025-01-13 19:40:19] [INFO] Cat #2 final balance update: +5000000000000000
+[2025-01-13 19:40:19] [INFO] Cat #5 final balance update: +5000000000000000
+[2025-01-13 19:40:19] [INFO] Cat #1 final balance update: +10000000000000000
+[2025-01-13 19:40:19] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 19:40:19] [INFO] Grand Prize Pool: 10000000000000000
+[2025-01-13 19:40:19] [INFO] Total Battles: 2
+[2025-01-13 19:40:19] [INFO] Cats Eliminated: 4
+[2025-01-13 19:40:19] [INFO] Updating contract with tournament results...
+[2025-01-13 19:40:19] [INFO] Starting tournament results update...
+[2025-01-13 19:40:19] [INFO] Cat #2 balance: 0
+[2025-01-13 19:40:19] [INFO] Cat #2 - Current balance: 0, Update amount: 5000000000000000, New balance will be: 5000000000000000
+[2025-01-13 19:40:20] [INFO] Cat #5 balance: 5000000000000000
+[2025-01-13 19:40:20] [INFO] Cat #5 - Current balance: 5000000000000000, Update amount: 5000000000000000, New balance will be: 10000000000000000
+[2025-01-13 19:40:20] [INFO] Cat #1 balance: 15000000000000000
+[2025-01-13 19:40:20] [INFO] Cat #1 - Current balance: 15000000000000000, Update amount: 10000000000000000, New balance will be: 25000000000000000
+[2025-01-13 19:40:20] [INFO] Sending balance update transaction with gas: 500000
+[2025-01-13 19:40:20] [INFO] Transaction hash: 0x4feacb00db80481b15d0b2118832c36d5577b1d3b9e378777dcf4e381d86b471
+[2025-01-13 19:40:22] [INFO] Balance updates completed
+[2025-01-13 19:40:22] [INFO] Updating states for 4 cats
+[2025-01-13 19:40:22] [INFO] State update transaction hash: 0xd31ebc5ab2cb97bfcde6056cd6f6470fbb4040334bf473a5a231d15652f90b53
+[2025-01-13 19:40:24] [INFO] State updates completed
+[2025-01-13 19:40:24] [INFO] Recording battle - Date: 1736826019, Winner: #2, Loser: #4
+[2025-01-13 19:40:24] [INFO] Recording battle - Date: 1736826019, Winner: #5, Loser: #3
+[2025-01-13 19:40:25] [INFO] Battle record transaction hash: 0x90e796da85f0f8454fcd1af5a3e90f35e20becf806631236e394b47066a7ab07
+[2025-01-13 19:40:25] [INFO] Battle record transaction hash: 0xcfe0883f50adbdfca28da7bfeab92164afa197a3fe75cbf136eaac7af9ede01d
+[2025-01-13 19:40:28] [INFO] Recorded battles 1 to 2
+[2025-01-13 19:40:28] [INFO] Tournament results update completed successfully!
+[2025-01-13 19:40:28] [INFO] Contract updated successfully!
+[2025-01-13 19:44:35] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 19:44:35] [INFO] Contract ABI loaded successfully
+[2025-01-13 19:44:35] [INFO] Running tournament...
+[2025-01-13 19:44:35] [INFO] Getting alive cats...
+[2025-01-13 19:44:35] [INFO] Total number of cats (nextTokenId): 6
+[2025-01-13 19:44:35] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-13 19:44:35] [INFO] getCatsByState returned 1 cats
+[2025-01-13 19:44:35] [INFO] Cat IDs: [1]
+[2025-01-13 19:44:35] [INFO] Required stake per cat: 10000000000000000
+[2025-01-13 19:44:35] [INFO] Cat #1 gets a bye this round
+[2025-01-13 19:44:35] [INFO] Created 0 battle pairs
+[2025-01-13 19:44:35] [INFO] 1 cats remaining after battles
+[2025-01-13 19:44:35] [INFO] Cat #1 wins the tournament!
+[2025-01-13 19:44:35] [INFO] Tournament winner (Cat #1) receives pool of 0
+[2025-01-13 19:44:35] [INFO] Cat #1 final balance update: +0
+[2025-01-13 19:44:35] [INFO] Tournament completed! Winner: Cat #1
+[2025-01-13 19:44:35] [INFO] Grand Prize Pool: 0
+[2025-01-13 19:44:35] [INFO] Total Battles: 0
+[2025-01-13 19:44:35] [INFO] Cats Eliminated: 0
+[2025-01-13 19:44:35] [INFO] Updating contract with tournament results...
+[2025-01-13 19:44:35] [INFO] Starting tournament results update...
+[2025-01-13 19:44:35] [INFO] Cat #1 balance: 25000000000000000
+[2025-01-13 19:44:35] [INFO] Cat #1 - Current balance: 25000000000000000, Update amount: 0, New balance will be: 25000000000000000
+[2025-01-13 19:44:35] [INFO] Sending balance update transaction with gas: 500000
+[2025-01-13 19:44:36] [INFO] Transaction hash: 0xf6a695355fa084c8c8ff5729680024d866875d0629f66eebe8291e282f9fc395
+[2025-01-13 19:44:38] [INFO] Balance updates completed
+[2025-01-13 19:44:38] [INFO] Tournament results update completed successfully!
+[2025-01-13 19:44:38] [INFO] Contract updated successfully!
+[2025-01-13 19:45:02] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 19:45:02] [INFO] Contract ABI loaded successfully
+[2025-01-13 19:45:02] [INFO] Running tournament...
+[2025-01-13 19:45:02] [INFO] Getting alive cats...
+[2025-01-13 19:45:03] [INFO] Total number of cats (nextTokenId): 6
+[2025-01-13 19:45:03] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-13 19:45:03] [INFO] getCatsByState returned 5 cats
+[2025-01-13 19:45:03] [INFO] Cat IDs: [1, 2, 3, 4, 5]
+[2025-01-13 19:45:03] [INFO] Required stake per cat: 10000000000000000
+[2025-01-13 19:45:03] [INFO] Cat #2 gets a bye this round
+[2025-01-13 19:45:03] [INFO] Cat #2 (bye) battles Cat #5 (previous winner)
+[2025-01-13 19:45:03] [INFO] Created 3 battle pairs
+[2025-01-13 19:45:03] [INFO] Battle: Cat #4 defeats Cat #1
+[2025-01-13 19:45:03] [INFO] Battle: Cat #5 defeats Cat #3
+[2025-01-13 19:45:03] [INFO] Battle: Cat #5 defeats Cat #2
+[2025-01-13 19:45:03] [INFO] 2 cats remaining after battles
+[2025-01-13 19:45:03] [INFO] Multiple cats remained. Randomly selected Cat #5 as tournament winner
+[2025-01-13 19:45:03] [INFO] Eliminated cats: #1, #3, #2, #4
+[2025-01-13 19:45:03] [INFO] Tournament winner (Cat #5) receives pool of 15000000000000000
+[2025-01-13 19:45:03] [INFO] Cat #4 final balance update: +5000000000000000
+[2025-01-13 19:45:03] [INFO] Cat #5 final balance update: +25000000000000000
+[2025-01-13 19:45:03] [INFO] Tournament completed! Winner: Cat #5
+[2025-01-13 19:45:03] [INFO] Grand Prize Pool: 15000000000000000
+[2025-01-13 19:45:03] [INFO] Total Battles: 3
+[2025-01-13 19:45:03] [INFO] Cats Eliminated: 4
+[2025-01-13 19:45:03] [INFO] Updating contract with tournament results...
+[2025-01-13 19:45:03] [INFO] Starting tournament results update...
+[2025-01-13 19:45:03] [INFO] Cat #4 balance: 0
+[2025-01-13 19:45:03] [INFO] Cat #4 - Current balance: 0, Update amount: 5000000000000000, New balance will be: 5000000000000000
+[2025-01-13 19:45:03] [INFO] Cat #5 balance: 10000000000000000
+[2025-01-13 19:45:03] [INFO] Cat #5 - Current balance: 10000000000000000, Update amount: 25000000000000000, New balance will be: 35000000000000000
+[2025-01-13 19:45:03] [INFO] Sending balance update transaction with gas: 500000
+[2025-01-13 19:45:04] [INFO] Transaction hash: 0x7d3e68975ba5d6f98ed5f1a11d3765fafff55cd75fea529717339daf8e90ba84
+[2025-01-13 19:45:06] [INFO] Balance updates completed
+[2025-01-13 19:45:06] [INFO] Updating states for 4 cats
+[2025-01-13 19:45:06] [INFO] State update transaction hash: 0x809f46a8ed328dbbaa70a3e98cc9afe283aa19f4044eec889008fe9f68c42629
+[2025-01-13 19:45:09] [INFO] State updates completed
+[2025-01-13 19:45:09] [INFO] Recording battle - Date: 1736826303, Winner: #4, Loser: #1
+[2025-01-13 19:45:09] [INFO] Recording battle - Date: 1736826303, Winner: #5, Loser: #2
+[2025-01-13 19:45:09] [INFO] Recording battle - Date: 1736826303, Winner: #5, Loser: #3
+[2025-01-13 19:45:09] [INFO] Battle record transaction hash: 0x494222f695c03daedfdf172efb75ef94a1a75462149d9628b170138423c95ff2
+[2025-01-13 19:45:09] [INFO] Battle record transaction hash: 0x8559511bdf4c5ff61578568e805eb100cf1875c965cf27496b16f0541a064ec7
+[2025-01-13 19:45:09] [INFO] Battle record transaction hash: 0x8353755ff2ce95f46ab03181649085c72361334e2af31c5b040d89f1e7498af3
+[2025-01-13 19:45:12] [INFO] Recorded battles 1 to 3
+[2025-01-13 19:45:12] [INFO] Tournament results update completed successfully!
+[2025-01-13 19:45:12] [INFO] Contract updated successfully!
+[2025-01-13 19:45:44] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 19:45:44] [INFO] Contract ABI loaded successfully
+[2025-01-13 19:45:44] [INFO] Running tournament...
+[2025-01-13 19:45:44] [INFO] Getting alive cats...
+[2025-01-13 19:45:45] [INFO] Total number of cats (nextTokenId): 6
+[2025-01-13 19:45:45] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-13 19:45:45] [INFO] getCatsByState returned 5 cats
+[2025-01-13 19:45:45] [INFO] Cat IDs: [1, 2, 3, 4, 5]
+[2025-01-13 19:45:45] [INFO] Required stake per cat: 10000000000000000
+[2025-01-13 19:45:45] [INFO] Cat #2 gets a bye this round
+[2025-01-13 19:45:45] [INFO] Cat #2 (bye) battles Cat #5 (previous winner)
+[2025-01-13 19:45:45] [INFO] Created 3 battle pairs
+[2025-01-13 19:45:45] [INFO] Battle: Cat #1 defeats Cat #4
+[2025-01-13 19:45:45] [INFO] Battle: Cat #5 defeats Cat #3
+[2025-01-13 19:45:45] [INFO] Battle: Cat #2 defeats Cat #5
+[2025-01-13 19:45:45] [INFO] 2 cats remaining after battles
+[2025-01-13 19:45:45] [INFO] Multiple cats remained. Randomly selected Cat #2 as tournament winner
+[2025-01-13 19:45:45] [INFO] Eliminated cats: #4, #3, #5, #1
+[2025-01-13 19:45:45] [INFO] Tournament winner (Cat #2) receives pool of 15000000000000000
+[2025-01-13 19:45:45] [INFO] Cat #1 final balance update: +5000000000000000
+[2025-01-13 19:45:45] [INFO] Cat #5 final balance update: +5000000000000000
+[2025-01-13 19:45:45] [INFO] Cat #2 final balance update: +20000000000000000
+[2025-01-13 19:45:45] [INFO] Tournament completed! Winner: Cat #2
+[2025-01-13 19:45:45] [INFO] Grand Prize Pool: 15000000000000000
+[2025-01-13 19:45:45] [INFO] Total Battles: 3
+[2025-01-13 19:45:45] [INFO] Cats Eliminated: 4
+[2025-01-13 19:45:45] [INFO] Updating contract with tournament results...
+[2025-01-13 19:45:45] [INFO] Starting tournament results update...
+[2025-01-13 19:45:45] [INFO] Cat #1 balance: 25000000000000000
+[2025-01-13 19:45:45] [INFO] Cat #1 - Current balance: 25000000000000000, Update amount: 5000000000000000, New balance will be: 30000000000000000
+[2025-01-13 19:45:45] [INFO] Cat #5 balance: 35000000000000000
+[2025-01-13 19:45:45] [INFO] Cat #5 - Current balance: 35000000000000000, Update amount: 5000000000000000, New balance will be: 40000000000000000
+[2025-01-13 19:45:45] [INFO] Cat #2 balance: 5000000000000000
+[2025-01-13 19:45:45] [INFO] Cat #2 - Current balance: 5000000000000000, Update amount: 20000000000000000, New balance will be: 25000000000000000
+[2025-01-13 19:45:45] [INFO] Sending balance update transaction with gas: 500000
+[2025-01-13 19:45:46] [INFO] Transaction hash: 0xf763565f82249a6998bc4d2771c279e0e2cf5340b630c6b875931f7d7b435707
+[2025-01-13 19:45:47] [INFO] Balance updates completed
+[2025-01-13 19:45:47] [INFO] Updating states for 4 cats
+[2025-01-13 19:45:48] [INFO] State update transaction hash: 0x079bb2da098746890258fec722a2da92f5fafb203dd3fa58813fe27fe6fc0804
+[2025-01-13 19:45:50] [INFO] State updates completed
+[2025-01-13 19:45:50] [INFO] Recording battle - Date: 1736826345, Winner: #1, Loser: #4
+[2025-01-13 19:45:50] [INFO] Recording battle - Date: 1736826345, Winner: #5, Loser: #3
+[2025-01-13 19:45:50] [INFO] Recording battle - Date: 1736826345, Winner: #2, Loser: #5
+[2025-01-13 19:45:51] [INFO] Battle record transaction hash: 0x070c438ffff95ef0b4f136f2a971b6785d61ea484f838e101641d010c28ecd2d
+[2025-01-13 19:45:51] [INFO] Battle record transaction hash: 0x56413e0b37131415612ad799f6fe275a8c84006d03a18d17d6b6cd17411f88b1
+[2025-01-13 19:45:51] [INFO] Battle record transaction hash: 0xadbf0f8a08fc3f1ea7b8862527822d95287ff07ed8abb9c8ce0d28516ebe4792
+[2025-01-13 19:45:54] [INFO] Recorded battles 1 to 3
+[2025-01-13 19:45:54] [INFO] Tournament results update completed successfully!
+[2025-01-13 19:45:54] [INFO] Contract updated successfully!
+[2025-01-13 19:56:30] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-13 19:56:30] [INFO] Contract ABI loaded successfully
+[2025-01-13 19:56:30] [INFO] Running tournament...
+[2025-01-13 19:56:30] [INFO] Getting alive cats...
+[2025-01-13 19:56:31] [INFO] Total number of cats (nextTokenId): 6
+[2025-01-13 19:56:31] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-13 19:56:31] [INFO] getCatsByState returned 5 cats
+[2025-01-13 19:56:31] [INFO] Cat IDs: [1, 2, 3, 4, 5]
+[2025-01-13 19:56:31] [INFO] Required stake per cat: 10000000000000000
+[2025-01-13 19:56:31] [INFO] Cat #3 gets a bye this round
+[2025-01-13 19:56:31] [INFO] Cat #3 (bye) battles Cat #5 (previous winner)
+[2025-01-13 19:56:31] [INFO] Created 3 battle pairs
+[2025-01-13 19:56:31] [INFO] Battle: Cat #4 defeats Cat #1
+[2025-01-13 19:56:31] [INFO] Battle: Cat #5 defeats Cat #2
+[2025-01-13 19:56:31] [INFO] Battle: Cat #3 defeats Cat #5
+[2025-01-13 19:56:31] [INFO] 2 cats remaining after battles
+[2025-01-13 19:56:31] [INFO] Multiple cats remained. Randomly selected Cat #3 as tournament winner
+[2025-01-13 19:56:31] [INFO] Eliminated cats: #1, #2, #5, #4
+[2025-01-13 19:56:31] [INFO] Tournament winner (Cat #3) receives pool of 15000000000000000
+[2025-01-13 19:56:31] [INFO] Cat #4 final balance update: +5000000000000000
+[2025-01-13 19:56:31] [INFO] Cat #5 final balance update: +5000000000000000
+[2025-01-13 19:56:31] [INFO] Cat #3 final balance update: +20000000000000000
+[2025-01-13 19:56:31] [INFO] Tournament completed! Winner: Cat #3
+[2025-01-13 19:56:31] [INFO] Grand Prize Pool: 15000000000000000
+[2025-01-13 19:56:31] [INFO] Total Battles: 3
+[2025-01-13 19:56:31] [INFO] Cats Eliminated: 4
+[2025-01-13 19:56:31] [INFO] Updating contract with tournament results...
+[2025-01-13 19:56:31] [INFO] Starting tournament results update...
+[2025-01-13 19:56:31] [INFO] Cat #4 balance: 0
+[2025-01-13 19:56:31] [INFO] Cat #4 - Current balance: 0, Update amount: 5000000000000000, New balance will be: 5000000000000000
+[2025-01-13 19:56:31] [INFO] Cat #5 balance: 0
+[2025-01-13 19:56:31] [INFO] Cat #5 - Current balance: 0, Update amount: 5000000000000000, New balance will be: 5000000000000000
+[2025-01-13 19:56:31] [INFO] Cat #3 balance: 0
+[2025-01-13 19:56:31] [INFO] Cat #3 - Current balance: 0, Update amount: 20000000000000000, New balance will be: 20000000000000000
+[2025-01-13 19:56:31] [INFO] Sending balance update transaction with gas: 500000
+[2025-01-13 19:56:32] [INFO] Transaction hash: 0x5b582eba4dea5da3350e1bf2610906ec6508962a3979db5a2f7050cfc8d10832
+[2025-01-13 19:56:34] [INFO] Balance updates completed
+[2025-01-13 19:56:34] [INFO] Updating states for 4 cats
+[2025-01-13 19:56:35] [INFO] State update transaction hash: 0xe12a92d7822d82a57bbebb60ee14f39af82c7e5b058a693046026ec79609e3ba
+[2025-01-13 19:56:38] [INFO] State updates completed
+[2025-01-13 19:56:38] [INFO] Recording battle - Date: 1736826991, Winner: #4, Loser: #1
+[2025-01-13 19:56:38] [INFO] Recording battle - Date: 1736826991, Winner: #3, Loser: #5
+[2025-01-13 19:56:38] [INFO] Recording battle - Date: 1736826991, Winner: #5, Loser: #2
+[2025-01-13 19:56:39] [INFO] Battle record transaction hash: 0x809549980ad797beb2311ef7b8a1be4cbe68511e7936b70fedf10be653d612bc
+[2025-01-13 19:56:39] [INFO] Battle record transaction hash: 0xe68c30f97bbc93b3bab090d1747e5bb648a9c4c2414ab0687df879ff9b33679a
+[2025-01-13 19:56:39] [INFO] Battle record transaction hash: 0x5278198d27bfb17b979b525ab35fa97d193d7c564b6abfef8017bbba9df393d6
+[2025-01-13 19:56:42] [INFO] Recorded battles 1 to 3
+[2025-01-13 19:56:42] [INFO] Tournament results update completed successfully!
+[2025-01-13 19:56:42] [INFO] Contract updated successfully!

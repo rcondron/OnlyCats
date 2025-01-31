@@ -1,0 +1,46 @@
+[2025-01-14 07:37:06] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-14 07:37:07] [INFO] Contract ABI loaded successfully
+[2025-01-14 07:37:08] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-14 07:37:08] [INFO] Cat IDs: [1, 2, 3, 4, 5, 6]
+[2025-01-14 07:37:08] [ERROR] Fatal error in main program - Error: The given key '2' was not present in the dictionary.
+StackTrace:    at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at OnlyCatsConsoleApp.Models.Tournament.RunTournament(List`1 cats, Decimal stake) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Models\Battle.cs:line 46
+   at OnlyCatsConsoleApp.Program.Main(String[] args) in C:\Users\Ryan\Desktop\Morpheus\Cats\Service\Program.cs:line 52
+[2025-01-14 19:50:23] [INFO] Starting OnlyCats Daily Tournament
+[2025-01-14 19:50:24] [INFO] Contract ABI loaded successfully
+[2025-01-14 19:50:27] [INFO] Calling getCatsByState with parameter: 1
+[2025-01-14 19:50:28] [INFO] Cat IDs: [1, 2, 3, 4, 5, 6]
+[2025-01-14 19:50:28] [INFO] Battles:
+[2025-01-14 19:50:28] [INFO] Winner: 5, Loser: 6
+[2025-01-14 19:50:28] [INFO] Winner: 4, Loser: 2
+[2025-01-14 19:50:28] [INFO] Winner: 1, Loser: 3
+[2025-01-14 19:50:28] [INFO] Winner: 4, Loser: 5
+[2025-01-14 19:50:28] [INFO] Winner: 1, Loser: 4
+[2025-01-14 19:50:28] [INFO] 
+Balances:
+[2025-01-14 19:50:28] [INFO] Cat 1: 0.05
+[2025-01-14 19:50:28] [INFO] Cat 2: 0.00
+[2025-01-14 19:50:28] [INFO] Cat 3: 0.00
+[2025-01-14 19:50:28] [INFO] Cat 4: 0.01
+[2025-01-14 19:50:28] [INFO] Cat 5: 0.01
+[2025-01-14 19:50:28] [INFO] Cat 6: 0.00
+[2025-01-14 19:50:28] [INFO] 
+Grand Prize Pool: 0.03
+[2025-01-14 19:50:28] [INFO] Updating states for 5 cats
+[2025-01-14 19:50:32] [INFO] State update transaction hash: 0x3a2b1ea09536f0f87364763138fd60ddb7f41dd62ea293bde37aaaa09ccaf061
+[2025-01-14 19:50:32] [INFO] Cat #1 balance: 0
+[2025-01-14 19:50:32] [INFO] Cat #1 - Current balance: 0, Update amount: 0, New balance will be: 0
+[2025-01-14 19:50:33] [INFO] Cat #2 balance: 0
+[2025-01-14 19:50:33] [INFO] Cat #2 - Current balance: 0, Update amount: 0, New balance will be: 0
+[2025-01-14 19:50:34] [INFO] Cat #3 balance: 0
+[2025-01-14 19:50:34] [INFO] Cat #3 - Current balance: 0, Update amount: 0, New balance will be: 0
+[2025-01-14 19:50:35] [INFO] Cat #4 balance: 0
+[2025-01-14 19:50:35] [INFO] Cat #4 - Current balance: 0, Update amount: 0, New balance will be: 0
+[2025-01-14 19:50:35] [INFO] Cat #5 balance: 0
+[2025-01-14 19:50:35] [INFO] Cat #5 - Current balance: 0, Update amount: 0, New balance will be: 0
+[2025-01-14 19:50:36] [INFO] Cat #6 balance: 0
+[2025-01-14 19:50:36] [INFO] Cat #6 - Current balance: 0, Update amount: 0, New balance will be: 0
+[2025-01-14 19:50:36] [INFO] Sending balance update transaction with gas: 500000
+[2025-01-14 19:50:39] [INFO] Transaction hash: 0x0e01b5ca03f7b922fe722320f1182ba7171d87ea0f66352630c55206d63b61f8
+[2025-01-14 19:50:39] [INFO] Recording 5 battles
+[2025-01-14 19:50:42] [INFO] Battles record transaction hash: 0x5a07edfe881c8374a3b11639986525bf4072649af4914f31517d04e2fba6da7c
