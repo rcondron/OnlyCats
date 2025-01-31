@@ -1,0 +1,2 @@
+export const WARRIOR_CATS_ADDRESS = '0x9D229Ff72ED4f54FCD5368444a864b97F86B711b' as const;
+export const MOR_TOKEN_ADDRESS = '0xc9E93d0cc08e5D6581bdfdfAf869b37cB89f5c9d' as const; 

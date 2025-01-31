@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --neon-primary: #ff2d55;
+  --neon-secondary: #4cd964;
+  --neon-accent: #007aff;
+  --dark-bg: #0a0a0f;
+  --dark-card: #13131a;
+
+  /* RainbowKit Custom Variables */
+  --rk-colors-accentColor: var(--neon-primary);
+  --rk-colors-connectButtonBackground: #13131a;
+  --rk-colors-connectButtonBackgroundError: #ff453a;
+  --rk-colors-connectButtonInnerBackground: #1a1a23;
+  --rk-colors-connectButtonText: #fff;
+  --rk-colors-connectButtonTextError: #fff;
+  --rk-colors-modalBackground: #0a0a0f;
+  --rk-colors-modalBorder: rgba(255, 255, 255, 0.1);
+  --rk-colors-modalText: #fff;
+  --rk-colors-modalTextSecondary: rgba(255, 255, 255, 0.6);
+  --rk-shadows-connectButton: 0 0 20px rgba(255, 45, 85, 0.2);
+  --rk-blur-modalOverlay: blur(20px);
+}
+
+body {
+  color: #fff;
+  background: var(--dark-bg);
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(255, 45, 85, 0.1), transparent 50%),
+    radial-gradient(circle at 0% 50%, rgba(76, 217, 100, 0.05), transparent 50%),
+    radial-gradient(circle at 100% 50%, rgba(0, 122, 255, 0.05), transparent 50%);
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-[#ff2d55] to-[#ff453a] text-white font-bold rounded-lg 
+    shadow-[0_0_20px_rgba(255,45,85,0.3)] hover:shadow-[0_0_30px_rgba(255,45,85,0.5)]
+    transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed
+    border border-[#ff2d55]/20 backdrop-blur-sm;
+  }
+
+  .card {
+    @apply bg-[#13131a] rounded-xl border border-white/10
+    shadow-[0_0_30px_rgba(0,0,0,0.3)]
+    backdrop-blur-sm
+    hover:shadow-[0_0_40px_rgba(0,0,0,0.4)]
+    transition-all duration-300;
+  }
+
+  .nav-link {
+    @apply px-4 py-2 rounded-lg text-white/70 transition-colors duration-200 
+    hover:text-white hover:bg-white/5;
+  }
+
+  .nav-link-active {
+    @apply bg-white/10 text-white;
+  }
+
+  .neon-text {
+    @apply bg-gradient-to-r from-[#ff2d55] via-[#ff9f0a] to-[#ff2d55]
+    bg-clip-text text-transparent
+    animate-gradient
+    drop-shadow-[0_0_10px_rgba(255,45,85,0.5)];
+  }
+
+  .neon-border {
+    @apply border border-[#ff2d55]/20
+    shadow-[0_0_20px_rgba(255,45,85,0.2)]
+    animate-pulse-border;
+  }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse-border {
+  0%, 100% { border-color: rgba(255, 45, 85, 0.2); }
+  50% { border-color: rgba(255, 45, 85, 0.4); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@layer utilities {
+  .animate-gradient {
+    animation: gradient 8s linear infinite;
+    background-size: 200% auto;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-border {
+    animation: pulse-border 2s ease-in-out infinite;
+  }
+}
