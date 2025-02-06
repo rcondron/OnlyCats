@@ -3,6 +3,8 @@ import { privateKeyToAccount } from 'viem/accounts';
 import { base } from 'viem/chains';
 import { WARRIOR_CATS_ADDRESS } from '@/lib/constants';
 import { warriorCatsABI } from '@/lib/contracts/warriorCatsABI';
+import { useWriteContract } from 'wagmi';
+import { type Hash } from 'viem';
 
 // Initialize clients
 const publicClient = createPublicClient({
@@ -18,23 +20,51 @@ const walletClient = createWalletClient({
   transport: http(process.env.NEXT_PUBLIC_RPC_URL),
 });
 
-export async function updateCatStates(tokenIds: bigint[], newState: 'alive' | 'dead') {
-  try {
-    const { request } = await publicClient.simulateContract({
-      address: WARRIOR_CATS_ADDRESS,
-      abi: warriorCatsABI,
-      functionName: 'updateCatStates',
-      args: [tokenIds.map(id => BigInt(id)), newState],
-      account,
-    });
+export function useBattleService() {
+  const { writeContract } = useWriteContract();
 
-    const hash = await walletClient.writeContract(request);
-    const receipt = await publicClient.waitForTransactionReceipt({ hash });
+  const updateCatStates = async (
+    tokenIds: bigint[],
+    newState: 'alive' | 'dead'
+  ) => {
+    try {
+      const stateValue = newState === 'alive' ? 1n : 0n;
+      const states = Array(tokenIds.length).fill(stateValue);
 
-    return receipt;
-  } catch (error) {
-    throw error;
-  }
+      await writeContract({
+        address: WARRIOR_CATS_ADDRESS as `0x${string}`,
+        abi: warriorCatsABI,
+        functionName: 'updateCatStates',
+        args: [tokenIds, states] as const,
+      });
+    } catch (error) {
+      console.error('Error updating cat states:', error);
+      throw error;
+    }
+  };
+
+  const distributeTournamentRewards = async (
+    tokenIds: bigint[],
+    amounts: bigint[]
+  ) => {
+    try {
+      const args = [tokenIds, amounts] as const;
+      await writeContract({
+        address: WARRIOR_CATS_ADDRESS as `0x${string}`,
+        abi: warriorCatsABI,
+        functionName: 'addToCatBalances',
+        args,
+      });
+    } catch (error) {
+      console.error('Error distributing tournament rewards:', error);
+      throw error;
+    }
+  };
+
+  return {
+    updateCatStates,
+    distributeTournamentRewards,
+  };
 }
 
 export async function getCatState(tokenId: number): Promise<string> {
@@ -62,28 +92,6 @@ export async function getCatsByState(state: 'alive' | 'dead'): Promise<bigint[]>
     });
 
     return cats as bigint[];
-  } catch (error) {
-    throw error;
-  }
-}
-
-export async function distributeTournamentRewards(
-  tokenIds: number[],
-  amounts: bigint[]
-) {
-  try {
-    const { request } = await publicClient.simulateContract({
-      address: WARRIOR_CATS_ADDRESS,
-      abi: warriorCatsABI,
-      functionName: 'addToCatBalances',
-      args: [tokenIds.map(id => BigInt(id)), amounts],
-      account,
-    });
-
-    const hash = await walletClient.writeContract(request);
-    const receipt = await publicClient.waitForTransactionReceipt({ hash });
-
-    return receipt;
   } catch (error) {
     throw error;
   }
