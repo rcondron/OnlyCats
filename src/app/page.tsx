@@ -115,6 +115,7 @@ export default function Home() {
 
   const handleMintSuccess = async (tokenId: string) => {
     try {
+      console.log('Minting cat:', tokenId, catName, generatedImage);
       await fetch('/api/cats', {
         method: 'POST',
         headers: {

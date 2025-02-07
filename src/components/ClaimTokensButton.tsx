@@ -1,29 +1,13 @@
 'use client';
 
-import React from 'react';
-import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
+import { useState } from 'react';
+import { useWriteContract } from 'wagmi';
 import { WARRIOR_CATS_ADDRESS } from '@/lib/constants';
 import { warriorCatsABI } from '@/lib/contracts/warriorCatsABI';
 
-interface ClaimTokensButtonProps {
-  tokenId: string;
-  className?: string;
-}
-
-export default function ClaimTokensButton({ tokenId, className = '' }: ClaimTokensButtonProps) {
-  const [isLoading, setIsLoading] = React.useState(false);
-  const { writeContract, data: hash } = useWriteContract();
-
-  const { isLoading: isClaiming } = useWaitForTransactionReceipt({
-    hash,
-    onSuccess() {
-      setIsLoading(false);
-      // Optionally show success message
-      alert('Tokens successfully claimed!');
-      // Refresh the page to show updated balance
-      window.location.reload();
-    },
-  });
+export default function ClaimTokensButton({ tokenId, className }: { tokenId: string; className?: string }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const { writeContract } = useWriteContract();
 
   const handleClaim = async () => {
     try {
@@ -34,9 +18,11 @@ export default function ClaimTokensButton({ tokenId, className = '' }: ClaimToke
         functionName: 'claimTokens',
         args: [BigInt(tokenId)],
       });
+      alert('Transaction sent! Please wait for confirmation.');
     } catch (error) {
       console.error('Error claiming tokens:', error);
-      alert('Failed to claim tokens');
+      alert('Failed to claim tokens. Please try again.');
+    } finally {
       setIsLoading(false);
     }
   };
@@ -44,10 +30,10 @@ export default function ClaimTokensButton({ tokenId, className = '' }: ClaimToke
   return (
     <button
       onClick={handleClaim}
-      disabled={isLoading || isClaiming}
-      className={`${className} ${isLoading || isClaiming ? 'opacity-50' : ''}`}
+      disabled={isLoading}
+      className={className}
     >
-      {isLoading || isClaiming ? 'Claiming...' : 'Claim'}
+      {isLoading ? 'Claiming...' : 'Claim Rewards'}
     </button>
   );
 } 

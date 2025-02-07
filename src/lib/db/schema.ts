@@ -13,5 +13,24 @@ export const cats = sqliteTable('cats', {
   createdAt: integer('created_at').default(sql`(unixepoch())`),
 });
 
+export const battles = sqliteTable('battles', {
+  id: integer('id').primaryKey(),
+  battleId: text('battle_id').notNull(),
+  winnerId: text('winner_id').notNull(),
+  loserId: text('loser_id').notNull(),
+  round: integer('round').notNull(),
+  timestamp: integer('timestamp', { mode: 'timestamp' }).notNull(),
+});
+
+export const tournaments = sqliteTable('tournaments', {
+  id: integer('id').primaryKey(),
+  battleId: text('battle_id').notNull(),
+  result: text('result').notNull(),
+  winnerAddress: text('winner_address').notNull(),
+  prizePool: text('prize_pool').notNull(),
+  participantCount: integer('participant_count').notNull(),
+  timestamp: integer('timestamp', { mode: 'timestamp' }).notNull(),
+});
+
 export type Cat = typeof cats.$inferSelect;
 export type InsertCat = typeof cats.$inferInsert; 

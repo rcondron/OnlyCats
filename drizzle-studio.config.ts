@@ -2,10 +2,7 @@ import type { Config } from 'drizzle-kit';
 
 export default {
   schema: './src/lib/db/schema.ts',
-  out: './migrations',
-  driver: 'libsql',
+  out: './drizzle',
   dialect: 'sqlite',
-  dbCredentials: {
-    url: 'file:sqlite.db'
-  },
+  breakpoints: true,
 } satisfies Config; 
