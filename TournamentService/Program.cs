@@ -39,6 +39,19 @@ namespace OnlyCatsConsoleApp
                     throw new InvalidOperationException("Failed to load configuration");
                 }
 
+                // Override private key from environment variable if it exists
+                var envPrivateKey = Environment.GetEnvironmentVariable("PRIVATE_KEY");
+                if (!string.IsNullOrEmpty(envPrivateKey))
+                {
+                    config.PrivateKey = envPrivateKey;
+                    logger.LogInformation("Using private key from environment variable");
+                }
+
+                if (string.IsNullOrEmpty(config.PrivateKey))
+                {
+                    throw new InvalidOperationException("Private key is not configured");
+                }
+
                 // Initialize database
                 var dbInitializer = new DbInitializer(config.ConnectionStrings.DefaultConnection);
                 dbInitializer.EnsureDatabase();

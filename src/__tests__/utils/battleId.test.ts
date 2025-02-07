@@ -1,0 +1,1 @@
+import { describe, it, expect, beforeAll, afterAll } from "@jest/globals"; import { parseBattleId, formatBattleTime } from "../../utils/battleId"; describe("parseBattleId", () => { it("should correctly parse a valid battle ID", () => { const result = parseBattleId("battle-202401180900"); expect(result).toEqual({ valid: true, year: 2024, month: 1, day: 18, hour: 9, }); }); });

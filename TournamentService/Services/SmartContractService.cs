@@ -24,6 +24,8 @@ namespace OnlyCatsConsoleApp.Services
         private readonly ILogger _logger;
         private readonly AppConfig _config;
 
+        public Contract Contract => _contract;
+
         public SmartContractService(Web3 web3, string contractAddress, ILogger logger, AppConfig config)
         {
             _web3 = web3;

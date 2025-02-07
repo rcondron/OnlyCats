@@ -1,5 +1,5 @@
 using System;
-using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Logging;
 
 namespace TournamentService.Services
@@ -19,7 +19,7 @@ namespace TournamentService.Services
         {
             try
             {
-                using (var connection = new SQLiteConnection(_connectionString))
+                using (var connection = new SqliteConnection(_connectionString))
                 {
                     connection.Open();
                     var sql = @"
@@ -28,7 +28,7 @@ namespace TournamentService.Services
                         VALUES 
                         (@battleId, @result, @timestamp, @winnerAddress, @prizePool, @participantCount)";
 
-                    using (var command = new SQLiteCommand(sql, connection))
+                    using (var command = new SqliteCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@battleId", result.BattleId);
                         command.Parameters.AddWithValue("@result", result.OverallResult);

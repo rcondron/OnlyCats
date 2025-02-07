@@ -1,5 +1,5 @@
 using System;
-using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
 
 namespace TournamentService.Services
 {
@@ -14,10 +14,8 @@ namespace TournamentService.Services
 
         public void EnsureDatabase()
         {
-            // Create database if it doesn't exist
-            SQLiteConnection.CreateFile("leaderboard.db");
-
-            using (var connection = new SQLiteConnection(_connectionString))
+            // Create database and tables
+            using (var connection = new SqliteConnection(_connectionString))
             {
                 connection.Open();
                 var sql = @"
@@ -33,7 +31,7 @@ namespace TournamentService.Services
                     CREATE INDEX IF NOT EXISTS IX_TournamentResults_BattleId ON TournamentResults(BattleId);
                     CREATE INDEX IF NOT EXISTS IX_TournamentResults_Timestamp ON TournamentResults(Timestamp);";
                 
-                using (var command = new SQLiteCommand(sql, connection))
+                using (var command = new SqliteCommand(sql, connection))
                 {
                     command.ExecuteNonQuery();
                 }
