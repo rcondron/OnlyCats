@@ -12,7 +12,8 @@
     "db:studio": "drizzle-kit studio",
     "db:migrate": "drizzle-kit push:sqlite",
     "db:seed": "tsx src/lib/db/seed.ts",
-    "db:setup": "npm run db:migrate && npm run db:seed"
+    "db:setup": "npm run db:migrate && npm run db:seed",
+    "test:e2e": "jest -c testing/jest.config.ts"
   },
   "dependencies": {
     "@libsql/client": "^0.14.0",
@@ -22,6 +23,7 @@
     "axios": "^1.6.7",
     "better-sqlite3": "^11.8.1",
     "canvas-confetti": "^1.9.3",
+    "chrome-launcher": "^1.1.2",
     "date-fns": "^4.1.0",
     "drizzle-kit": "^0.30.2",
     "drizzle-orm": "^0.38.4",
@@ -46,6 +48,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/canvas-confetti": "^1.9.0",
     "@types/jest": "^29.5.14",
+    "@types/puppeteer": "^5.4.7",
     "@types/react": "^18.2.57",
     "@types/testing-library__jest-dom": "^5.14.9",
     "autoprefixer": "^10.4.20",
@@ -58,7 +61,9 @@
     "jest-environment-jsdom": "^29.7.0",
     "next": "^15.1.6",
     "postcss": "^8.4.35",
+    "puppeteer": "^22.8.2",
     "tailwindcss": "^3.4.1",
+    "ts-jest": "^29.2.5",
     "typescript": "^5.3.3"
   }
 }
