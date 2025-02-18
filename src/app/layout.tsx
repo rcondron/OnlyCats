@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import ClientProviders from './client-providers';
+import { ClientProviders } from './client-providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Only Cats Fight Club',
-  description: 'A decentralized cat fighting game',
+  title: 'OnlyCats',
+  description: 'The ultimate cat battle arena',
 };
 
 export default function RootLayout({
@@ -18,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ClientProviders>{children}</ClientProviders>
+        <ClientProviders>
+          {children}
+        </ClientProviders>
       </body>
     </html>
   );

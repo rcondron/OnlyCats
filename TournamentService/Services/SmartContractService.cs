@@ -12,6 +12,7 @@ using OnlyCatsConsoleApp.Models;
 using Nethereum.Contracts.ContractHandlers;
 using System.IO;
 using Nethereum.JsonRpc.Client;
+using Microsoft.Extensions.Logging;
 
 namespace OnlyCatsConsoleApp.Services
 {
@@ -20,10 +21,12 @@ namespace OnlyCatsConsoleApp.Services
     {
         private readonly Web3 _web3;
         private readonly Contract _contract;
-        private readonly LoggingService _logger;
+        private readonly ILogger _logger;
         private readonly AppConfig _config;
 
-        public SmartContractService(Web3 web3, string contractAddress, LoggingService logger, AppConfig config)
+        public Contract Contract => _contract;
+
+        public SmartContractService(Web3 web3, string contractAddress, ILogger logger, AppConfig config)
         {
             _web3 = web3;
             _logger = logger;
@@ -39,11 +42,11 @@ namespace OnlyCatsConsoleApp.Services
 
                 string abi = File.ReadAllText(abiPath);
                 _contract = web3.Eth.GetContract(abi, contractAddress);
-                _logger.LogAsync("Contract ABI loaded successfully").Wait();
+                _logger.LogInformation("Contract ABI loaded successfully");
             }
             catch (Exception ex)
             {
-                _logger.LogErrorAsync(ex, "Failed to initialize contract").Wait();
+                _logger.LogError(ex, "Failed to initialize contract");
                 throw;
             }
         }
@@ -58,7 +61,7 @@ namespace OnlyCatsConsoleApp.Services
                 }
                 catch (Exception ex)
                 {
-                    await _logger.LogErrorAsync(ex, $"Attempt {i + 1} of {_config.MaxRetries} for {operationName}");
+                    _logger.LogError(ex, $"Attempt {i + 1} of {_config.MaxRetries} for {operationName}");
 
                     if (i == _config.MaxRetries - 1)
                         throw;
@@ -75,12 +78,12 @@ namespace OnlyCatsConsoleApp.Services
             {
                 var balanceFunction = _contract.GetFunction("catBalances");
                 var balance = await balanceFunction.CallAsync<BigInteger>(new BigInteger(tokenId));
-                await _logger.LogAsync($"Cat #{tokenId} balance: {balance}");
+                _logger.LogInformation($"Cat #{tokenId} balance: {balance}");
                 return balance;
             }
             catch (Exception ex)
             {
-                await _logger.LogErrorAsync(ex, $"Error getting balance for cat #{tokenId}");
+                _logger.LogError(ex, $"Error getting balance for cat #{tokenId}");
                 throw;
             }
         }
@@ -91,7 +94,7 @@ namespace OnlyCatsConsoleApp.Services
             {
 
                 var catsFunction = _contract.GetFunction("getCatsByState");
-                await _logger.LogAsync($"Calling getCatsByState with parameter: {stateNumber}");
+                _logger.LogInformation($"Calling getCatsByState with parameter: {stateNumber}");
 
                 try
                 {
@@ -101,22 +104,22 @@ namespace OnlyCatsConsoleApp.Services
                     {
                         //await _logger.LogAsync($"getCatsByState returned {result.Count} cats");
                         var catIds = result.Select(x => long.Parse(x.ToString())).ToList();
-                        await _logger.LogAsync($"Cat IDs: [{string.Join(", ", catIds)}]");
+                        _logger.LogInformation($"Cat IDs: [{string.Join(", ", catIds)}]");
                         return catIds;
                     }
 
-                    await _logger.LogAsync($"No cats found in state: {stateNumber}", "WARN");
+                    _logger.LogInformation($"No cats found in state: {stateNumber}", "WARN");
                     return new List<long>();
                 }
                 catch (Exception ex)
                 {
-                    await _logger.LogErrorAsync(ex, $"Error calling getCatsByState: {ex.Message}");
+                    _logger.LogError(ex, $"Error calling getCatsByState: {ex.Message}");
                     throw;
                 }
             }
             catch (Exception ex)
             {
-                await _logger.LogErrorAsync(ex, $"Error getting cats by state: {stateNumber}");
+                _logger.LogError(ex, $"Error getting cats by state: {stateNumber}");
                 throw;
             }
         }
@@ -134,7 +137,7 @@ namespace OnlyCatsConsoleApp.Services
             {
                 try
                 {
-                    await _logger.LogAsync($"Updating states for {tokenIds.Length} cats");
+                    _logger.LogInformation($"Updating states for {tokenIds.Length} cats");
 
                     var callerAddress = _web3.TransactionManager.Account.Address;
                     var txInput = updateFunction.CreateTransactionInput(
@@ -145,13 +148,13 @@ namespace OnlyCatsConsoleApp.Services
                     txInput.Gas = new HexBigInteger(500000);
 
                     var txHash = await _web3.Eth.TransactionManager.SendTransactionAsync(txInput);
-                    await _logger.LogAsync($"State update transaction hash: {txHash}");
+                    _logger.LogInformation($"State update transaction hash: {txHash}");
 
                     return txHash;
                 }
                 catch (Exception ex)
                 {
-                    await _logger.LogErrorAsync(ex, "Failed to update cat states");
+                    _logger.LogError(ex, "Failed to update cat states");
                     throw;
                 }
             }, "UpdateCatStates");
@@ -173,7 +176,7 @@ namespace OnlyCatsConsoleApp.Services
                         BigInteger amt = new(amounts[i] * 1e18m);
 
                         var currentBalance = await GetCatBalance(tokenIds[i]);
-                        await _logger.LogAsync($"Cat #{tokenIds[i]} - Current balance: {currentBalance}, Update amount: {amounts[i]}, " + $"New balance will be: {currentBalance + amt}");
+                        _logger.LogInformation($"Cat #{tokenIds[i]} - Current balance: {currentBalance}, Update amount: {amounts[i]}, " + $"New balance will be: {currentBalance + amt}");
                     }
 
                     var callerAddress = _web3.TransactionManager.Account.Address;
@@ -184,15 +187,15 @@ namespace OnlyCatsConsoleApp.Services
                     );
                     txInput.Gas = new HexBigInteger(500000);
 
-                    await _logger.LogAsync($"Sending balance update transaction with gas: {txInput.Gas.Value}");
+                    _logger.LogInformation($"Sending balance update transaction with gas: {txInput.Gas.Value}");
                     var txHash = await _web3.Eth.TransactionManager.SendTransactionAsync(txInput);
-                    await _logger.LogAsync($"Transaction hash: {txHash}");
+                    _logger.LogInformation($"Transaction hash: {txHash}");
 
                     return txHash;
                 }
                 catch (Exception ex)
                 {
-                    await _logger.LogErrorAsync(ex, "Failed to add to cat balances");
+                    _logger.LogError(ex, "Failed to add to cat balances");
                     throw;
                 }
             }, "AddToCatBalances");
@@ -211,7 +214,7 @@ namespace OnlyCatsConsoleApp.Services
                     var winners = result.Battles.Select(b => new BigInteger(b.WinnerId)).ToArray();
                     var losers = result.Battles.Select(b => new BigInteger(b.LoserId)).ToArray();
 
-                    await _logger.LogAsync($"Recording {result.Battles.Count} battles");
+                    _logger.LogInformation($"Recording {result.Battles.Count} battles");
 
                     var callerAddress = _web3.TransactionManager.Account.Address;
 
@@ -241,13 +244,13 @@ namespace OnlyCatsConsoleApp.Services
                     );
 
                     var txHash = await _web3.Eth.TransactionManager.SendTransactionAsync(txInput);
-                    await _logger.LogAsync($"Battles record transaction hash: {txHash}");
+                    _logger.LogInformation($"Battles record transaction hash: {txHash}");
 
                     return txHash;
                 }
                 catch (Exception ex)
                 {
-                    await _logger.LogErrorAsync(ex, "Failed to record battles");
+                    _logger.LogError(ex, "Failed to record battles");
                     throw;
                 }
             }, "RecordBattles");

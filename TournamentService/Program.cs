@@ -5,7 +5,8 @@ using Nethereum.Web3.Accounts;
 using OnlyCatsConsoleApp.Services;
 using OnlyCatsConsoleApp.Models;
 using Microsoft.Extensions.Configuration;
-using Org.BouncyCastle.Math;
+using Microsoft.Extensions.Logging;
+using TournamentService.Services;
 
 namespace OnlyCatsConsoleApp
 {
@@ -15,6 +16,16 @@ namespace OnlyCatsConsoleApp
         {
             try
             {
+                // Set up logging
+                using var loggerFactory = LoggerFactory.Create(builder =>
+                {
+                    builder
+                        .AddConsole()
+                        .SetMinimumLevel(LogLevel.Information);
+                });
+
+                var logger = loggerFactory.CreateLogger<Program>();
+
                 // Load configuration
                 var configuration = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
@@ -28,10 +39,24 @@ namespace OnlyCatsConsoleApp
                     throw new InvalidOperationException("Failed to load configuration");
                 }
 
+                // Override private key from environment variable if it exists
+                var envPrivateKey = Environment.GetEnvironmentVariable("PRIVATE_KEY");
+                if (!string.IsNullOrEmpty(envPrivateKey))
+                {
+                    config.PrivateKey = envPrivateKey;
+                    logger.LogInformation("Using private key from environment variable");
+                }
 
-                var logger = new LoggingService();
+                if (string.IsNullOrEmpty(config.PrivateKey))
+                {
+                    throw new InvalidOperationException("Private key is not configured");
+                }
 
-                await logger.LogAsync("Starting OnlyCats Daily Tournament");
+                // Initialize database
+                var dbInitializer = new DbInitializer(config.ConnectionStrings.DefaultConnection);
+                dbInitializer.EnsureDatabase();
+
+                logger.LogInformation("Starting OnlyCats Daily Tournament");
 
                 // Initialize Web3 with account
                 var account = new Account(config.PrivateKey);
@@ -45,37 +70,69 @@ namespace OnlyCatsConsoleApp
 
                 if (cats.Count < 2)
                 {
-                    await logger.LogAsync("Not enough cats for tournament.");
+                    logger.LogWarning("Not enough cats for tournament.");
                     return;
                 }
 
                 var tournament = new Tournament();
                 var result = tournament.RunTournament(cats, (decimal)reqStake / 1e18m);
 
-                await logger.LogAsync("Battles:");
+                logger.LogInformation("Battles:");
                 foreach (var battle in result.Battles)
                 {
-                    await logger.LogAsync($"Winner: {battle.WinnerId}, Loser: {battle.LoserId}");
+                    logger.LogInformation("Winner: {WinnerId}, Loser: {LoserId}", battle.WinnerId, battle.LoserId);
                 }
 
-                await logger.LogAsync("\nBalances:");
+                logger.LogInformation("\nBalances:");
                 foreach (var kvp in result.BalanceUpdates.OrderBy(kvp => kvp.Key))
                 {
-                    await logger.LogAsync($"Cat {kvp.Key}: {kvp.Value:F2}");
+                    logger.LogInformation("Cat {CatId}: {Balance:F2}", kvp.Key, kvp.Value);
                 }
 
-                await logger.LogAsync($"\nGrand Prize Pool: {result.GrandPrizePool:F2}");
+                logger.LogInformation("\nGrand Prize Pool: {GrandPrizePool:F2}", result.GrandPrizePool);
 
+                // Update states and record battles
                 int[] states = Enumerable.Repeat(0, result.DeadCats.Count).ToArray();
                 await contractService.UpdateCatStates(result.DeadCats.ToArray(), states);
                 await contractService.AddToCatBalances(result.BalanceUpdates.Keys.ToArray(), result.BalanceUpdates.Values.ToArray());
                 await contractService.RecordBattles(result);
 
+                // Update local database with tournament results
+                try
+                {
+                    var dbLogger = loggerFactory.CreateLogger<DbUpdater>();
+                    var dbUpdater = new DbUpdater(config.ConnectionStrings.DefaultConnection, dbLogger);
+
+                    // Get the first winner's address (if any)
+                    var winnerAddress = result.Battles.FirstOrDefault()?.WinnerId.ToString() ?? "Unknown";
+
+                    dbUpdater.UpdateTournamentResults(new TournamentService.Services.TournamentResult
+                    {
+                        BattleId = $"battle-{DateTime.Now:yyyyMMddHH}",
+                        OverallResult = $"Tournament completed with {result.Battles.Count} battles",
+                        WinnerAddress = winnerAddress,
+                        GrandPrizePool = result.GrandPrizePool,
+                        ParticipantCount = cats.Count,
+                        Battles = result.Battles.Select(b => new TournamentService.Services.BattleResult 
+                        {
+                            WinnerId = b.WinnerId.ToString(),
+                            LoserId = b.LoserId.ToString()
+                        }).ToList()
+                    });
+
+                    logger.LogInformation("Tournament results recorded successfully in local database.");
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, "Failed to record tournament results in local database");
+                    // Continue execution as this is not a critical failure
+                }
             }
             catch (Exception ex)
             {
-                var logger = new LoggingService();
-                await logger.LogErrorAsync(ex, "Fatal error in main program");
+                var logger = LoggerFactory.Create(builder => builder.AddConsole())
+                    .CreateLogger<Program>();
+                logger.LogError(ex, "Fatal error in main program");
                 throw;
             }
         }
