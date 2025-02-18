@@ -19,7 +19,7 @@ export default function MintButton({ imageUrl, name, onSuccess, className = '' }
   const { address, isConnected } = useAccount();
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const { writeContract } = useWriteContract();
+  const { writeContractAsync } = useWriteContract();
 
   const handleMint = async () => {
     if (!address) return;
@@ -44,12 +44,13 @@ export default function MintButton({ imageUrl, name, onSuccess, className = '' }
 
       const { tokenUri, signature } = await response.json();
 
-      await writeContract({
+      const tx = await writeContractAsync({
         address: WARRIOR_CATS_ADDRESS,
         abi: warriorCatsABI,
         functionName: 'mintCat',
         args: [tokenUri, signature],
       });
+      console.log('Transaction sent:', tx)
 
       // Trigger success flow immediately after mint transaction is sent
       const testTokenId = '1'; // You might want to generate this differently
