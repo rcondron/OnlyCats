@@ -1,7 +1,7 @@
 using System.Numerics;
 using System.Security.Cryptography;
 
-namespace OnlyCatsConsoleApp.Models
+namespace TournamentApp
 {
 
     public class TournamentResult
@@ -27,6 +27,7 @@ namespace OnlyCatsConsoleApp.Models
         public long RoundId { get; set; }
         public long WinnerId { get; set; }
         public long LoserId { get; set; }
+        public decimal Reward { get; set; }
     }
 
      public class Tournament
@@ -54,6 +55,8 @@ namespace OnlyCatsConsoleApp.Models
             var grandWinner = cats[0];
             result.BalanceUpdates[grandWinner] += result.GrandPrizePool;
             result.ChampId = grandWinner;
+
+            result.Battles.Last().Reward += result.GrandPrizePool;
 
             return result;
         }
@@ -91,14 +94,16 @@ namespace OnlyCatsConsoleApp.Models
                 balances[winner] += stake / 2;
                 result.GrandPrizePool += stake / 2;
 
-                //RoundId = hour (2 digits hour of day) + round (2 digits bracket level) + index (8 digits battle in bracket)
-                var rId = DateTime.UtcNow.ToString("yyMMddHH") + roundNum.ToString("D2") + indexCnt.ToString("D8");
+                //RoundId = Timestamp + round (2 digits bracket level) + index (8 digits battle in bracket)
+                var rId = DateTime.UtcNow.ToString("yyMMddHH") + roundNum.ToString("D2") + indexCnt.ToString("D6");
+
                 // Record the battle
                 result.Battles.Add(new BattleResult
                 {
                     RoundId = long.Parse(rId),
                     WinnerId = winner,
-                    LoserId = loser
+                    LoserId = loser,
+                    Reward = stake / 2
                 });
 
                 // Add the winner to the next round

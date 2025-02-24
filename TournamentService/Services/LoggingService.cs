@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace OnlyCatsConsoleApp.Services
+namespace TournamentApp.Services
 {
     public class LoggingService
     {

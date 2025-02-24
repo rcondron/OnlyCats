@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     const imageHash = await pinFileToIPFS(buffer, 'warrior-cat.png');
     
     // Create and upload metadata
-    const metadata = {
+    /*const metadata = {
       name,
       description: `A mighty warrior cat named ${name}`,
       image: `ipfs://${imageHash}`,
@@ -44,6 +44,11 @@ export async function POST(request: Request) {
           value: '0'
         }
       ]
+    };*/
+
+    const metadata = {
+      name,
+      image: `ipfs://${imageHash}`
     };
 
     const metadataHash = await pinJSONToIPFS(metadata);

@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server';
-import { cats } from '@/data/sampleData';
+import { db } from '@/lib/db';
+import { cats } from '@/lib/db/schema';
 
 export async function GET() {
   try {
-    return NextResponse.json(cats);
+    const allCats = await db.select().from(cats);
+    return NextResponse.json(allCats);
   } catch (error) {
     console.error('Error fetching cats:', error);
     return NextResponse.json(
@@ -16,19 +18,14 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const newCat = {
-      id: cats.length + 1,
-      ...body,
-      wins: 0,
-      losses: 0,
-      isActive: true,
-      createdAt: new Date().toISOString()
-    };
-    
-    // In a real app, we would persist this data
-    cats.push(newCat);
+    const newCat = await db.insert(cats).values({
+      Id: body.id,
+      Name: body.name,
+      IPFS: body.ipfs,
+      createdAt: Math.floor(Date.now() / 1000)
+    }).returning();
 
-    return NextResponse.json(newCat);
+    return NextResponse.json(newCat[0]);
   } catch (error) {
     console.error('Error saving cat:', error);
     return NextResponse.json(

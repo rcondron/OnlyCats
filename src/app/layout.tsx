@@ -6,8 +6,9 @@ import { ClientProviders } from './client-providers';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'OnlyCats',
-  description: 'The ultimate cat battle arena',
+  title: 'Only Cats Fight Club',
+  description: 'Enter a realm where legendary feline warriors battle for glory, honor, and catnip.',
+  icons: '/favicon.ico'
 };
 
 export default function RootLayout({
@@ -17,6 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body className={inter.className}>
         <ClientProviders>
           {children}

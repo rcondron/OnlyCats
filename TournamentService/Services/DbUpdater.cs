@@ -1,8 +1,9 @@
 using System;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
-namespace TournamentService.Services
+namespace TournamentApp.Services
 {
     public class DbUpdater
     {
@@ -15,52 +16,105 @@ namespace TournamentService.Services
             _logger = logger;
         }
 
-        public void UpdateTournamentResults(TournamentResult result)
+        public Tuple<long, string, string> GetCat(long catId)
         {
-            try
+            using (var connection = new SqliteConnection(_connectionString))
             {
-                using (var connection = new SqliteConnection(_connectionString))
-                {
-                    connection.Open();
-                    var sql = @"
-                        INSERT INTO TournamentResults 
-                        (BattleId, Result, Timestamp, WinnerAddress, PrizePool, ParticipantCount) 
-                        VALUES 
-                        (@battleId, @result, @timestamp, @winnerAddress, @prizePool, @participantCount)";
+                connection.Open();
+                var sql = "SELECT Id, Name, IPFS FROM Cats WHERE Id = @Id";
 
-                    using (var command = new SqliteCommand(sql, connection))
+                using (var command = new SqliteCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", catId);
+                    
+                    using (var reader = command.ExecuteReader())
                     {
-                        command.Parameters.AddWithValue("@battleId", result.BattleId);
-                        command.Parameters.AddWithValue("@result", result.OverallResult);
-                        command.Parameters.AddWithValue("@timestamp", DateTime.Now);
-                        command.Parameters.AddWithValue("@winnerAddress", result.WinnerAddress);
-                        command.Parameters.AddWithValue("@prizePool", result.GrandPrizePool);
-                        command.Parameters.AddWithValue("@participantCount", result.ParticipantCount);
-                        command.ExecuteNonQuery();
+                        if (reader.Read())
+                        {
+                            return new Tuple<long, string, string>(
+                                reader.GetInt64(0),    // Id
+                                reader.GetString(1),    // Name
+                                reader.GetString(2)     // IPFS
+                            );
+                        }
+                        return null; // Return null if cat not found
                     }
                 }
             }
-            catch (Exception ex)
+        }
+
+        public List<long> GetCatIds()
+        {
+            var catIds = new List<long>();
+            using (var connection = new SqliteConnection(_connectionString))
             {
-                _logger.LogError(ex, "Failed to update tournament results for battle {BattleId}", result.BattleId);
-                throw; // Re-throw to ensure the error is handled by the calling code
+                connection.Open();
+                var sql = "SELECT Id FROM Cats ORDER BY Id";
+
+                using (var command = new SqliteCommand(sql, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            catIds.Add(reader.GetInt64(0));
+                        }
+                    }
+                }
+            }
+            return catIds;
+        }
+
+        public void SaveBattles(TournamentResult result)
+        {
+
+            using (var connection = new SqliteConnection(_connectionString))
+            {
+                connection.Open();
+                var sql = @"INSERT INTO Battles (Id, Timestamp, WinnerId, LoserId, Reward, IsChamp) VALUES (@Id, @Timestamp, @WinnerId, @LoserId, @Reward, @IsChamp)";
+
+                foreach (var b in result.Battles)
+                {
+                    try
+                    {
+                        using (var command = new SqliteCommand(sql, connection))
+                        {
+                            command.Parameters.AddWithValue("@Id", b.RoundId);
+                            command.Parameters.AddWithValue("@Timestamp", DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+                            command.Parameters.AddWithValue("@WinnerId", b.WinnerId);
+                            command.Parameters.AddWithValue("@LoserId", b.LoserId);
+                            command.Parameters.AddWithValue("@Reward", b.Reward);
+                            command.Parameters.AddWithValue("@IsChamp", b.RoundId == result.Battles.Last().RoundId);
+                            command.ExecuteNonQuery();
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "Failed to update tournament results for battle {BattleId}", b.RoundId);
+                        throw; // Re-throw to ensure the error is handled by the calling code
+                    }
+                }
+            }
+
+        }
+
+        public void SaveCat(long id, string name, string ipfs)
+        {
+            using (var connection = new SqliteConnection(_connectionString))
+            {
+                connection.Open();
+                var sql = "INSERT INTO Cats (Id, Name, IPFS) VALUES (@Id, @Name, @IPFS)";
+
+                using (var command = new SqliteCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue("@Name", name);
+                    command.Parameters.AddWithValue("@IPFS", ipfs);
+                    command.ExecuteNonQuery();
+                }
             }
         }
-    }
 
-    public class TournamentResult
-    {
-        public required string BattleId { get; set; }
-        public required string OverallResult { get; set; }
-        public required string WinnerAddress { get; set; }
-        public decimal GrandPrizePool { get; set; }
-        public int ParticipantCount { get; set; }
-        public List<BattleResult> Battles { get; set; } = new();
-    }
-
-    public class BattleResult
-    {
-        public required string WinnerId { get; set; }
-        public required string LoserId { get; set; }
     }
 } 

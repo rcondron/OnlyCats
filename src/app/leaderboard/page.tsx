@@ -67,24 +67,29 @@ export default function Leaderboard() {
     async function fetchLeaderboard() {
       try {
         const response = await fetch('/api/leaderboard');
-        if (!response.ok) {
-          throw new Error('Failed to fetch leaderboard');
-        }
-        
         const data = await response.json();
         
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to fetch leaderboard');
+        }
+
+        if (!Array.isArray(data)) {
+          console.error('Invalid leaderboard data format:', data);
+          throw new Error('Invalid leaderboard data format');
+        }
+
         // Transform data into CatLeader objects
         const transformedData = data.map((cat: any) => ({
           tokenId: BigInt(cat.tokenId),
           metadata: {
-            name: cat.metadata.name,
-            image: cat.metadata.image,
+            name: cat.metadata?.name || `Warrior Cat #${cat.tokenId}`,
+            image: cat.metadata?.image || '',
           },
           stats: {
-            wins: cat.stats.wins,
-            losses: cat.stats.losses,
-            championCount: cat.stats.championCount,
-            lifetimeRewards: BigInt(cat.stats.lifetimeRewards),
+            wins: cat.stats?.wins || 0,
+            losses: cat.stats?.losses || 0,
+            championCount: cat.stats?.championCount || 0,
+            lifetimeRewards: BigInt(cat.stats?.lifetimeRewards || 0),
           }
         }));
 

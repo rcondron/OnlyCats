@@ -1,10 +1,10 @@
 import { sql } from 'drizzle-orm';
 import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core';
 
-export const cats = sqliteTable('cats', {
-  tokenId: text('token_id').primaryKey(),
-  name: text('name'),
-  image: text('image'),
+export const cats = sqliteTable('Cats', {
+  Id: integer('Id').primaryKey(),
+  Name: text('Name'),
+  IPFS: text('IPFS'),
   wins: integer('wins').default(0),
   losses: integer('losses').default(0),
   championCount: integer('champion_count').default(0),
@@ -13,13 +13,13 @@ export const cats = sqliteTable('cats', {
   createdAt: integer('created_at').default(sql`(unixepoch())`),
 });
 
-export const battles = sqliteTable('battles', {
-  id: integer('id').primaryKey(),
-  battleId: text('battle_id').notNull(),
-  winnerId: text('winner_id').notNull(),
-  loserId: text('loser_id').notNull(),
-  round: integer('round').notNull(),
-  timestamp: integer('timestamp', { mode: 'timestamp' }).notNull(),
+export const battles = sqliteTable('Battles', {
+  Id: integer('Id').primaryKey(),
+  Timestamp: integer('Timestamp').notNull(),
+  WinnerId: integer('WinnerId'),
+  LoserId: integer('LoserId'),
+  Reward: integer('Reward').notNull().default(0),
+  IsChamp: integer('IsChamp').notNull().default(0),
 });
 
 export const tournaments = sqliteTable('tournaments', {

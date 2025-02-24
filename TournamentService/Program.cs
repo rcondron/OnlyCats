@@ -2,13 +2,14 @@ using System;
 using System.Threading.Tasks;
 using Nethereum.Web3;
 using Nethereum.Web3.Accounts;
-using OnlyCatsConsoleApp.Services;
-using OnlyCatsConsoleApp.Models;
+using TournamentApp.Services;
+using TournamentApp.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using TournamentService.Services;
+using System.Net.Http;
+using System.Text.Json;
 
-namespace OnlyCatsConsoleApp
+namespace TournamentApp
 {
     class Program
     {
@@ -97,41 +98,72 @@ namespace OnlyCatsConsoleApp
                 await contractService.AddToCatBalances(result.BalanceUpdates.Keys.ToArray(), result.BalanceUpdates.Values.ToArray());
                 await contractService.RecordBattles(result);
 
-                // Update local database with tournament results
+                var dbLogger = loggerFactory.CreateLogger<DbUpdater>();
+                var dbUpdater = new DbUpdater(config.ConnectionStrings.DefaultConnection, dbLogger);
+
+                // Add Battle to Local Database
                 try
                 {
-                    var dbLogger = loggerFactory.CreateLogger<DbUpdater>();
-                    var dbUpdater = new DbUpdater(config.ConnectionStrings.DefaultConnection, dbLogger);
-
-                    // Get the first winner's address (if any)
-                    var winnerAddress = result.Battles.FirstOrDefault()?.WinnerId.ToString() ?? "Unknown";
-
-                    dbUpdater.UpdateTournamentResults(new TournamentService.Services.TournamentResult
-                    {
-                        BattleId = $"battle-{DateTime.Now:yyyyMMddHH}",
-                        OverallResult = $"Tournament completed with {result.Battles.Count} battles",
-                        WinnerAddress = winnerAddress,
-                        GrandPrizePool = result.GrandPrizePool,
-                        ParticipantCount = cats.Count,
-                        Battles = result.Battles.Select(b => new TournamentService.Services.BattleResult 
-                        {
-                            WinnerId = b.WinnerId.ToString(),
-                            LoserId = b.LoserId.ToString()
-                        }).ToList()
-                    });
-
-                    logger.LogInformation("Tournament results recorded successfully in local database.");
+                    dbUpdater.SaveBattles(result);
+                    logger.LogInformation("Tournament results recorded successfully to local database.");
                 }
                 catch (Exception ex)
                 {
-                    logger.LogError(ex, "Failed to record tournament results in local database");
+                    logger.LogError(ex, "Failed to record tournament results to local database");
                     // Continue execution as this is not a critical failure
                 }
+
+                // Load Cats to Local Database
+                var nextId = await contractService.GetNextTokenId();
+                var getIds = new List<long>();
+                var currIds = dbUpdater.GetCatIds();
+
+                for (long i = 1; i < nextId; i++)
+                {
+                    if (!currIds.Contains(i))
+                    {
+                        getIds.Add(i);
+                    }
+                }
+
+                // Fetch and save cat data
+                using (var httpClient = new HttpClient())
+                {
+                    foreach (var id in getIds)
+                    {
+                        try
+                        {
+                            // Get the IPFS URI from the contract
+                            var tokenUri = await contractService.GetTokenURI(id);
+                            
+                            // Convert ipfs:// to https://
+                            var httpUri = tokenUri.Replace("ipfs://", "https://gateway.pinata.cloud/ipfs/");
+                            
+                            // Fetch the JSON metadata
+                            var response = await httpClient.GetStringAsync(httpUri);
+                            using (JsonDocument document = JsonDocument.Parse(response))
+                            {
+                                var root = document.RootElement;
+                                var name = root.GetProperty("name").GetString();
+                                
+                                // Save to database
+                                dbUpdater.SaveCat(id, name, tokenUri);
+                                logger.LogInformation("Saved cat #{CatId}: {Name}", id, name);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            logger.LogError(ex, "Failed to process cat #{CatId}", id);
+                            // Continue with next cat even if one fails
+                            continue;
+                        }
+                    }
+                }
+
             }
             catch (Exception ex)
             {
-                var logger = LoggerFactory.Create(builder => builder.AddConsole())
-                    .CreateLogger<Program>();
+                var logger = LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger<Program>();
                 logger.LogError(ex, "Fatal error in main program");
                 throw;
             }

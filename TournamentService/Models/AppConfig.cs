@@ -1,6 +1,6 @@
 using System;
 
-namespace OnlyCatsConsoleApp.Models
+namespace TournamentApp.Models
 {
     public class AppConfig
     {

@@ -1,12 +1,14 @@
-import { createClient } from '@libsql/client';
-import { drizzle } from 'drizzle-orm/libsql';
-import * as schema from './schema';
+import { drizzle } from 'drizzle-orm/better-sqlite3';
+import Database from 'better-sqlite3';
+import { join } from 'path';
 
-const client = createClient({
-  url: process.env.DATABASE_URL || 'file:leaderboard.db',
-  authToken: process.env.DATABASE_AUTH_TOKEN,
-});
+// Get the database path relative to the project root
+const dbPath = join(process.cwd(), 'onlycats.db');
 
-export const db = drizzle(client, { schema });
+// Create a database instance
+const sqlite = new Database(dbPath);
+
+// Create the database connection
+export const db = drizzle(sqlite);
 
 export type Database = typeof db; 

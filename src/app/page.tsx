@@ -8,6 +8,43 @@ import { generateCatName } from '@/utils/nameGenerator';
 import Header from '@/components/Header';
 import MintButton from '@/components/MintButton';
 
+const ConnectMessage = () => (
+  <div className="text-center space-y-6">
+    <div className="flex flex-col items-center">
+      <span className="text-6xl mb-4 animate-bounce">⚔️</span>
+      <h2 className="text-3xl font-cinzel font-bold neon-text mb-2">
+        Ready for Battle?
+      </h2>
+      <p className="text-xl text-white/70 mb-2">
+        Connect your wallet to begin your warrior journey
+      </p>
+      <p className="text-sm text-white/50">
+        Use the connect button in the top right to get started
+      </p>
+    </div>
+    <div className="inline-block bg-gradient-to-r from-purple-500/10 to-blue-500/10 
+      border border-purple-500/20 rounded-lg p-4 max-w-md mx-auto">
+      <p className="text-sm text-white/60">
+        What awaits you:
+      </p>
+      <ul className="text-sm text-white/70 mt-2 space-y-1">
+        <li className="flex items-center gap-2">
+          <span>🎨</span> Generate unique warrior cats with AI
+        </li>
+        <li className="flex items-center gap-2">
+          <span>⚔️</span> Enter epic tournaments
+        </li>
+        <li className="flex items-center gap-2">
+          <span>💰</span> Earn rewards from victories
+        </li>
+        <li className="flex items-center gap-2">
+          <span>🏆</span> Rise through the ranks
+        </li>
+      </ul>
+    </div>
+  </div>
+);
+
 export default function Home() {
   const router = useRouter();
   const { isConnected } = useAccount();
@@ -169,9 +206,7 @@ export default function Home() {
                 {isGenerating ? 'Summoning Warrior...' : '⚔️ Generate Warrior Cat ⚔️'}
               </button>
             ) : (
-              <p className="text-xl text-white/50 animate-pulse">
-                Connect your wallet to begin your journey
-              </p>
+              <ConnectMessage />
             )}
           </div>
 

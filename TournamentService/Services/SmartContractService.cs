@@ -8,13 +8,14 @@ using System.Linq;
 using System.Threading;
 using Nethereum.RPC.Eth.DTOs;
 using Nethereum.Hex.HexTypes;
-using OnlyCatsConsoleApp.Models;
+using TournamentApp.Models;
 using Nethereum.Contracts.ContractHandlers;
 using System.IO;
 using Nethereum.JsonRpc.Client;
 using Microsoft.Extensions.Logging;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 
-namespace OnlyCatsConsoleApp.Services
+namespace TournamentApp.Services
 {
 
     public class SmartContractService
@@ -70,6 +71,36 @@ namespace OnlyCatsConsoleApp.Services
                 }
             }
             throw new Exception($"Failed after {_config.MaxRetries} attempts: {operationName}");
+        }
+
+        public async Task<long> GetNextTokenId()
+        {
+            try
+            {
+                var nextIdFunction = _contract.GetFunction("nextTokenId");
+                var nextId = await nextIdFunction.CallAsync<long>();
+                return nextId;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error getting next token ID");
+                throw;
+            }
+        }
+
+        public async Task<string> GetTokenURI(long tokenId)
+        {
+            try
+            {
+                var tokenURIFunction = _contract.GetFunction("tokenURI");
+                var tokenURI = await tokenURIFunction.CallAsync<string>(tokenId);
+                return tokenURI;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error getting tokenURI");
+                throw;
+            }
         }
 
         public async Task<BigInteger> GetCatBalance(long tokenId)
