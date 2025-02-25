@@ -48,9 +48,12 @@ export default function MyCats() {
   const [errorModalMessage, setErrorModalMessage] = useState<string | null>(null);
   const [isClaimingAll, setIsClaimingAll] = useState(false);
 
-  const [txHash, setTxHash] = useState<`0x${string}` | undefined>(undefined);
   const [claimAllTxHash, setClaimAllTxHash] = useState<`0x${string}` | undefined>(undefined);
   const [stakingTxHash, setStakingTxHash] = useState<`0x${string}` | undefined>(undefined);
+
+  const [isWaitingForTx, setIsWaitingForTx] = useState<boolean>(false);
+  const [isWaitingForStakeTx, setIsWaitingForStakeTx] = useState<boolean>(false);
+  const [isWaitingForClaimAllTx, setIsWaitingForClaimAllTx] = useState<boolean>(false);
 
   // Add new state for initial loading
   const [isInitialLoading, setIsInitialLoading] = useState(true);
@@ -66,18 +69,6 @@ export default function MyCats() {
   const { writeContractAsync } = useWriteContract();
 
   const publicClient = usePublicClient()!;
-
-  const { isLoading: isWaitingForTx } = useWaitForTransactionReceipt({
-    hash: txHash
-  });
-
-  const { isLoading: isWaitingForStakeTx } = useWaitForTransactionReceipt({
-    hash: stakingTxHash
-  });
-
-  const { isLoading: isWaitingForClaimAllTx } = useWaitForTransactionReceipt({
-    hash: claimAllTxHash
-  });
 
   // Get cats owned by the user
   const { data: tokenIds, refetch } = useReadContract({
@@ -226,6 +217,7 @@ export default function MyCats() {
   }, [isConnected, publicClient]);
 
   const handleRevive = async (tokenId: string, index: number) => {
+    setIsWaitingForStakeTx(true)
     try {
       // First check MOR balance
       const morBalance = await publicClient.readContract({
@@ -260,8 +252,8 @@ export default function MyCats() {
       }
 
       const updatedCats = cats.map(c => {
-        if(c.id != tokenId) {
-          return {...c, state: 1 } as Cat;
+        if(c.id == tokenId) {
+          return ({...c, state: 1 });
         }
         return c;
       });
@@ -285,11 +277,15 @@ export default function MyCats() {
       }
       setIsApproving(false);
     }
+    finally {
+      setIsWaitingForStakeTx(false)
+    }
   };
 
   const handleReviveAll = async () => {
     if (isRevivingAll || !reviveAllFee || isWaitingForTx) return;
     setIsRevivingAll(true);
+    setIsWaitingForTx(true);
     
     try {
       // First check if we have enough ETH for the fee
@@ -340,8 +336,6 @@ export default function MyCats() {
         return c;
       });
       setCats(updatedCats)
-
-      setTxHash(hash);
     } catch (error) {
       console.error('Error reviving all cats:', error);
       if (error instanceof Error) {
@@ -356,6 +350,9 @@ export default function MyCats() {
         setErrorModalMessage('Unable to process revival at this time');
       }
       setIsRevivingAll(false);
+    }
+    finally {
+      setIsWaitingForTx(false);
     }
   };
 
@@ -403,6 +400,7 @@ export default function MyCats() {
   const handleClaimAll = async () => {
     if (isClaimingAll || isWaitingForClaimAllTx) return;
     setIsClaimingAll(true);
+    setIsWaitingForClaimAllTx(true);
     
     try {
       const catsWithBalance = cats.filter(cat => cat.balance > 0n);
@@ -428,7 +426,7 @@ export default function MyCats() {
       const updatedCats = cats.map(c => {
         const foundCat = catsWithBalance.find(cr => cr.id == c.id);
         if(foundCat) {
-          return {...c, balance: BigInt(0) } as Cat;
+          return {...c, balance: 0n } as Cat;
         }
         return c;
       });
@@ -447,6 +445,9 @@ export default function MyCats() {
         setErrorModalMessage('Unable to process claim at this time');
       }
       setIsClaimingAll(false);
+    }
+    finally {
+      setIsWaitingForClaimAllTx(false);
     }
   };
 
@@ -667,8 +668,8 @@ export default function MyCats() {
                             tokenId={cat.id}
                             onClaim={(tokenId: string) => {
                               const updatedCats = cats.map(c => {
-                                if(c.id != tokenId) {
-                                  return {...c, balance: BigInt(0) } as Cat;
+                                if(c.id == tokenId) {
+                                  return {...c, balance: 0n } as Cat;
                                 }
                                 return c;
                               });
