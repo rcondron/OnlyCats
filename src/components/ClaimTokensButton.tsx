@@ -7,12 +7,12 @@ import { warriorCatsABI } from '@/lib/contracts/warriorCatsABI';
 
 export default function ClaimTokensButton({ tokenId, className }: { tokenId: string; className?: string }) {
   const [isLoading, setIsLoading] = useState(false);
-  const { writeContract } = useWriteContract();
+  const { writeContractAsync } = useWriteContract();
 
   const handleClaim = async () => {
     try {
       setIsLoading(true);
-      await writeContract({
+      const tx = await writeContractAsync({
         address: WARRIOR_CATS_ADDRESS,
         abi: warriorCatsABI,
         functionName: 'claimTokens',

@@ -26,6 +26,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
 TournamentService/.env
 TournamentService/.env
 TournamentService/appsettings.json
@@ -40,3 +41,6 @@ next-env.d.ts
 # SQLite database
 *.db
 *.db-journal
+
+TournamentService/obj
+TournamentService/.idea

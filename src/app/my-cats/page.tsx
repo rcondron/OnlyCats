@@ -118,8 +118,7 @@ export default function MyCats() {
 
   const STAKE_REQUIREMENT = stakeRequirement || 10000000000000000n;
 
-  const { writeContract: writeMOR } = useWriteContract();
-  const { writeContract: writeNFT } = useWriteContract();
+  const { writeContractAsync } = useWriteContract();
 
   const publicClient = usePublicClient();
 
@@ -392,57 +391,24 @@ export default function MyCats() {
         functionName: 'balanceOf',
         args: [address as `0x${string}`],
       });
-
+  
       if (morBalance < STAKE_REQUIREMENT) {
         setErrorModalMessage('Insufficient MOR balance for revival');
         return;
       }
 
-      // Check allowance
-      const currentAllowance = await publicClient.readContract({
-        address: MOR_TOKEN_ADDRESS,
-        abi: morTokenABI,
-        functionName: 'allowance',
-        args: [address as `0x${string}`, WARRIOR_CATS_ADDRESS],
-      });
-
-      // Only show approval modal if allowance is insufficient
-      if (currentAllowance < STAKE_REQUIREMENT) {
-        setIsApproving(true);
-        setShowApprovalModal(true);
-        
-        try {
-          const { hash: approveHash } = await writeMOR({
-            address: MOR_TOKEN_ADDRESS,
-            abi: morTokenABI,
-            functionName: 'approve',
-            args: [WARRIOR_CATS_ADDRESS, MAX_APPROVAL],
-          }) || {};
-
-          if (!approveHash) {
-            throw new Error('Only Cats needs approval to manage your MOR balance');
-          }
-
-          setApprovalTxHash(approveHash);
-          await publicClient.waitForTransactionReceipt({ hash: approveHash });
-          setShowApprovalModal(false);
-          setIsApproving(false);
-        } catch (error) {
-          console.error('Approval error:', error);
-          setShowApprovalModal(false);
-          setIsApproving(false);
-          setErrorModalMessage('Only Cats needs approval to manage your MOR balance');
-          return;
-        }
-      }
+      // First check MOR balance
+      const isValid = await validateAllowanceBalance();
+      if(!isValid)
+        return;
 
       // Now revive the cat
-      const { hash: reviveHash } = await writeNFT({
+      const reviveHash = await writeContractAsync({
         address: WARRIOR_CATS_ADDRESS,
         abi: warriorCatsABI,
         functionName: 'reviveCat',
         args: [BigInt(tokenId)],
-      }) || {};
+      });
 
       if (!reviveHash) {
         throw new Error('Unable to process revival transaction');
@@ -481,14 +447,35 @@ export default function MyCats() {
         return;
       }
 
-      const { hash } = await writeNFT({
+      // First check MOR balance
+      const morBalance = await publicClient.readContract({
+        address: MOR_TOKEN_ADDRESS,
+        abi: morTokenABI,
+        functionName: 'balanceOf',
+        args: [address as `0x${string}`],
+      });
+  
+      const catsToRevive = cats.filter(c => c.state == 0);
+      if (morBalance < STAKE_REQUIREMENT * BigInt(catsToRevive.length)) {
+        setErrorModalMessage('Insufficient MOR balance for revival');
+        return;
+      }
+
+      // First check MOR balance
+      const isValid = await validateAllowanceBalance();
+      if(!isValid)
+        return;
+
+      const hash = await writeContractAsync({
         address: WARRIOR_CATS_ADDRESS,
         abi: warriorCatsABI,
         functionName: 'reviveAllCats',
         value: reviveAllFee,
-      }) || {};
+      });
 
-      if (!hash) {
+      const receipt = await publicClient?.waitForTransactionReceipt({ hash })
+
+      if (!hash || receipt?.status != "success") {
         throw new Error('Unable to process revival transaction');
       }
 
@@ -510,6 +497,48 @@ export default function MyCats() {
     }
   };
 
+  const validateAllowanceBalance = async () => {
+    // Check allowance
+    const currentAllowance = await publicClient.readContract({
+      address: MOR_TOKEN_ADDRESS,
+      abi: morTokenABI,
+      functionName: 'allowance',
+      args: [address as `0x${string}`, WARRIOR_CATS_ADDRESS],
+    });
+
+    // Only show approval modal if allowance is insufficient
+    if (currentAllowance < STAKE_REQUIREMENT) {
+      setIsApproving(true);
+      setShowApprovalModal(true);
+      
+      try {
+        const approveHash = await writeContractAsync({
+          address: MOR_TOKEN_ADDRESS,
+          abi: morTokenABI,
+          functionName: 'approve',
+          args: [WARRIOR_CATS_ADDRESS, MAX_APPROVAL],
+        });
+
+        if (!approveHash) {
+          throw new Error('Only Cats needs approval to manage your MOR balance');
+        }
+
+        setApprovalTxHash(approveHash);
+        await publicClient.waitForTransactionReceipt({ hash: approveHash });
+        setShowApprovalModal(false);
+        setIsApproving(false);
+      } catch (error) {
+        console.error('Approval error:', error);
+        setShowApprovalModal(false);
+        setIsApproving(false);
+        setErrorModalMessage('Only Cats needs approval to manage your MOR balance');
+        return;
+      }
+    }
+
+    return true;
+  }
+
   const handleClaimAll = async () => {
     if (isClaimingAll || isWaitingForClaimAllTx) return;
     setIsClaimingAll(true);
@@ -522,12 +551,12 @@ export default function MyCats() {
         return;
       }
 
-      const { hash } = await writeNFT({
+      const hash = await writeContractAsync({
         address: WARRIOR_CATS_ADDRESS,
         abi: warriorCatsABI,
         functionName: 'claimAllTokens',
         args: [catsWithBalance.map(cat => BigInt(cat.id))],
-      }) || {};
+      });
 
       if (!hash) {
         throw new Error('Unable to process claim transaction');
