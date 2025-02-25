@@ -447,6 +447,25 @@ export default function MyCats() {
         return;
       }
 
+      // First check MOR balance
+      const morBalance = await publicClient.readContract({
+        address: MOR_TOKEN_ADDRESS,
+        abi: morTokenABI,
+        functionName: 'balanceOf',
+        args: [address as `0x${string}`],
+      });
+  
+      const catsToRevive = cats.filter(c => c.state == 0);
+      if (morBalance < STAKE_REQUIREMENT * BigInt(catsToRevive.length)) {
+        setErrorModalMessage('Insufficient MOR balance for revival');
+        return;
+      }
+
+      // First check MOR balance
+      const isValid = await validateAllowanceBalance();
+      if(!isValid)
+        return;
+
       const hash = await writeContractAsync({
         address: WARRIOR_CATS_ADDRESS,
         abi: warriorCatsABI,
@@ -454,7 +473,9 @@ export default function MyCats() {
         value: reviveAllFee,
       });
 
-      if (!hash) {
+      const receipt = await publicClient?.waitForTransactionReceipt({ hash })
+
+      if (!hash || receipt?.status != "success") {
         throw new Error('Unable to process revival transaction');
       }
 
