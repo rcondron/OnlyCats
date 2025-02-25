@@ -28,6 +28,7 @@ yarn-error.log*
 .env*.local
 .env
 TournamentService/.env
+TournamentService/bin
 TournamentService/.env
 TournamentService/appsettings.json
 
