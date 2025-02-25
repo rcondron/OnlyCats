@@ -329,8 +329,17 @@ export default function MyCats() {
       const receipt = await publicClient?.waitForTransactionReceipt({ hash })
 
       if (!hash || receipt?.status != "success") {
-        throw new Error('Unable to process revival transaction');
+        throw new Error('Unable to process revival all transaction');
       }
+
+      const updatedCats = cats.map(c => {
+        const foundCat = catsToRevive.find(cr => cr.id == c.id);
+        if(foundCat) {
+          return {...c, state: 1 } as Cat;
+        }
+        return c;
+      });
+      setCats(updatedCats)
 
       setTxHash(hash);
     } catch (error) {
@@ -410,9 +419,20 @@ export default function MyCats() {
         args: [catsWithBalance.map(cat => BigInt(cat.id))],
       });
 
-      if (!hash) {
-        throw new Error('Unable to process claim transaction');
+      const receipt = await publicClient?.waitForTransactionReceipt({ hash })
+
+      if (!hash || receipt?.status != "success") {
+        throw new Error('Unable to process claim all transaction');
       }
+
+      const updatedCats = cats.map(c => {
+        const foundCat = catsWithBalance.find(cr => cr.id == c.id);
+        if(foundCat) {
+          return {...c, balance: BigInt(0) } as Cat;
+        }
+        return c;
+      });
+      setCats(updatedCats)
 
       setClaimAllTxHash(hash);
     } catch (error) {
@@ -645,6 +665,15 @@ export default function MyCats() {
                         {cat.balance > 0n && (
                           <ClaimTokensButton 
                             tokenId={cat.id}
+                            onClaim={(tokenId: string) => {
+                              const updatedCats = cats.map(c => {
+                                if(c.id != tokenId) {
+                                  return {...c, balance: BigInt(0) } as Cat;
+                                }
+                                return c;
+                              });
+                              setCats(updatedCats)
+                            }}
                             className="px-3 py-1 text-xs rounded-full bg-yellow-500/10 
                               text-yellow-400 hover:bg-yellow-500/20 transition-colors
                               border border-yellow-500/20 hover:border-yellow-500/30

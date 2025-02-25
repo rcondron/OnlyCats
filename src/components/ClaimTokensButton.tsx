@@ -5,7 +5,13 @@ import { usePublicClient, useWriteContract } from 'wagmi';
 import { WARRIOR_CATS_ADDRESS } from '@/lib/constants';
 import { warriorCatsABI } from '@/lib/contracts/warriorCatsABI';
 
-export default function ClaimTokensButton({ tokenId, className }: { tokenId: string; className: string }) {
+interface ClaimTokensButtonProps {
+  tokenId: string,
+  className: any,
+  onClaim: (tokenId: string) => void;
+  children: any;
+}
+export default function ClaimTokensButton({ tokenId, className, onClaim }: ClaimTokensButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
   const { writeContractAsync } = useWriteContract();
   const publicClient = usePublicClient()!;
@@ -27,7 +33,10 @@ export default function ClaimTokensButton({ tokenId, className }: { tokenId: str
         throw new Error('Unable to process revival transaction');
       }
 
-      alert('Transaction sent! Please wait for confirmation.');
+      onClaim(tokenId);
+
+      alert('Claimed succesfully!');
+
     } catch (error) {
       console.error('Error claiming tokens:', error);
       alert('Failed to claim tokens. Please try again.');
