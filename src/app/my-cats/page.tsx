@@ -19,6 +19,8 @@ import ReviveButton from '@/components/ReviveButton';
 import ClaimTokensButton from '@/components/ClaimTokensButton';
 import Modal from '@/components/Modal';
 import Link from 'next/link';
+import { getCatDataRequests } from './utils';
+import { ConnectWalletMessage, LoadingMessage, NoCatsMessage } from './components';
 
 interface Cat {
   id: string;
@@ -34,63 +36,6 @@ interface Cat {
   championCount: number;
 }
 
-interface LoadingMessageProps {
-  message: string;
-}
-
-const LoadingMessage = ({ message }: LoadingMessageProps) => (
-  <div className="flex flex-col items-center justify-center space-y-4">
-    <div className="animate-spin text-4xl">🌟</div>
-    <p className="text-xl text-white/70">{message}</p>
-  </div>
-);
-
-const ConnectWalletMessage = () => (
-  <div className="text-center space-y-6">
-    <div className="flex flex-col items-center">
-      <span className="text-6xl mb-4">😺</span>
-      <h2 className="text-3xl font-cinzel font-bold neon-text mb-2">
-        Welcome to Only Cats
-      </h2>
-      <p className="text-xl text-white/70 mb-2">
-        Connect your wallet to view your warrior cats
-      </p>
-      <p className="text-sm text-white/50">
-        Use the connect button in the top right to get started
-      </p>
-    </div>
-    <div className="inline-block bg-gradient-to-r from-purple-500/10 to-blue-500/10 
-      border border-purple-500/20 rounded-lg p-4 max-w-md mx-auto">
-      <p className="text-sm text-white/60">
-        Once connected, you'll be able to:
-      </p>
-      <ul className="text-sm text-white/70 mt-2 space-y-1">
-        <li className="flex items-center gap-2">
-          <span>👀</span> View your warrior cat collection
-        </li>
-        <li className="flex items-center gap-2">
-          <span>⚔️</span> Enter battles and earn rewards
-        </li>
-        <li className="flex items-center gap-2">
-          <span>✨</span> Revive fallen warriors
-        </li>
-        <li className="flex items-center gap-2">
-          <span>💰</span> Claim your battle earnings
-        </li>
-      </ul>
-    </div>
-  </div>
-);
-
-const NoCatsMessage = () => (
-  <div className="text-center">
-    <p className="text-xl text-white/70 mb-4">You don't have any cats yet</p>
-    <a href="/" className="btn-primary inline-block">
-      Generate Your First Cat
-    </a>
-  </div>
-);
-
 export default function MyCats() {
   const { address, isConnected } = useAccount();
   const [cats, setCats] = useState<Cat[]>([]);
@@ -98,14 +43,14 @@ export default function MyCats() {
   const [error, setError] = useState<string | null>(null);
   const [isRevivingAll, setIsRevivingAll] = useState(false);
   const [reviveAllFee, setReviveAllFee] = useState<bigint | null>(null);
-  const [txHash, setTxHash] = useState<`0x${string}` | null>(null);
   const [isApproving, setIsApproving] = useState(false);
-  const [stakingTxHash, setStakingTxHash] = useState<`0x${string}` | null>(null);
   const [showApprovalModal, setShowApprovalModal] = useState(false);
   const [errorModalMessage, setErrorModalMessage] = useState<string | null>(null);
-  const [approvalTxHash, setApprovalTxHash] = useState<`0x${string}` | null>(null);
   const [isClaimingAll, setIsClaimingAll] = useState(false);
-  const [claimAllTxHash, setClaimAllTxHash] = useState<`0x${string}` | null>(null);
+
+  const [txHash, setTxHash] = useState<`0x${string}` | undefined>(undefined);
+  const [claimAllTxHash, setClaimAllTxHash] = useState<`0x${string}` | undefined>(undefined);
+  const [stakingTxHash, setStakingTxHash] = useState<`0x${string}` | undefined>(undefined);
 
   // Add new state for initial loading
   const [isInitialLoading, setIsInitialLoading] = useState(true);
@@ -120,54 +65,18 @@ export default function MyCats() {
 
   const { writeContractAsync } = useWriteContract();
 
-  const publicClient = usePublicClient();
+  const publicClient = usePublicClient()!;
 
   const { isLoading: isWaitingForTx } = useWaitForTransactionReceipt({
-    hash: txHash,
-    onSuccess: (receipt) => {
-      //console.log('Revive all transaction successful');
-      alert(`Transaction successful! Hash: ${receipt.transactionHash}`);
-      refetch();
-      setTxHash(null);
-      setIsRevivingAll(false);
-    },
-    onError: (error) => {
-      console.error('Revive all transaction failed:', error);
-      setErrorModalMessage('Unable to complete revival process');
-      setTxHash(null);
-      setIsRevivingAll(false);
-    }
+    hash: txHash
   });
 
   const { isLoading: isWaitingForStakeTx } = useWaitForTransactionReceipt({
-    hash: stakingTxHash,
-    onSuccess: (receipt) => {
-      //console.log('Stake transaction successful');
-      alert(`Transaction successful! Hash: ${receipt.transactionHash}`);
-      refetch();
-      setStakingTxHash(null);
-    },
-    onError: (error) => {
-      console.error('Stake transaction failed:', error);
-      setStakingTxHash(null);
-    }
+    hash: stakingTxHash
   });
 
   const { isLoading: isWaitingForClaimAllTx } = useWaitForTransactionReceipt({
-    hash: claimAllTxHash,
-    onSuccess: (receipt) => {
-      //console.log('Claim all transaction successful');
-      alert(`Transaction successful! Hash: ${receipt.transactionHash}`);
-      refetch();
-      setClaimAllTxHash(null);
-      setIsClaimingAll(false);
-    },
-    onError: (error) => {
-      console.error('Claim all transaction failed:', error);
-      setErrorModalMessage('Unable to complete claim process');
-      setClaimAllTxHash(null);
-      setIsClaimingAll(false);
-    }
+    hash: claimAllTxHash
   });
 
   // Get cats owned by the user
@@ -175,79 +84,17 @@ export default function MyCats() {
     address: WARRIOR_CATS_ADDRESS,
     abi: warriorCatsABI,
     functionName: 'getCatsByOwner',
-    args: [address as `0x${string}`],
-    enabled: !!address,
+    args: [address as `0x${string}`]
   });
 
   // Get URIs, states and balances for all cats
   const { data: catData } = useReadContracts({
-    contracts: tokenIds?.flatMap((tokenId) => [
-      {
-        address: WARRIOR_CATS_ADDRESS,
-        abi: warriorCatsABI,
-        functionName: 'tokenURI',
-        args: [tokenId],
-      },
-      {
-        address: WARRIOR_CATS_ADDRESS,
-        abi: warriorCatsABI,
-        functionName: 'getCatState',
-        args: [tokenId],
-      },
-      {
-        address: WARRIOR_CATS_ADDRESS,
-        abi: warriorCatsABI,
-        functionName: 'catBalances',
-        args: [tokenId],
-      },
-      {
-        address: WARRIOR_CATS_ADDRESS,
-        abi: warriorCatsABI,
-        functionName: 'getStakedAmount',
-        args: [tokenId],
-      },
-      {
-        address: WARRIOR_CATS_ADDRESS,
-        abi: warriorCatsABI,
-        functionName: 'lifetimeRewards',
-        args: [tokenId],
-      },
-      {
-        address: WARRIOR_CATS_ADDRESS,
-        abi: warriorCatsABI,
-        functionName: 'getBattlesByCat',
-        args: [tokenId],
-      },
-      {
-        address: WARRIOR_CATS_ADDRESS,
-        abi: warriorCatsABI,
-        functionName: 'champsByCat',
-        args: [tokenId],
-      }
-    ]) ?? [],
-  });
-
-  // Add new read contract for allowance
-  const { data: morAllowance } = useReadContract({
-    address: MOR_TOKEN_ADDRESS,
-    abi: morTokenABI,
-    functionName: 'allowance',
-    args: [address as `0x${string}`, WARRIOR_CATS_ADDRESS],
-    enabled: !!address,
+    contracts: tokenIds?.flatMap((tokenId) => getCatDataRequests(tokenId) ?? []),
   });
 
   // Add max approval constant
   const MAX_APPROVAL = 2n ** 256n - 1n; // Max uint256 value
 
-  // Add new contract read for battles
-  const { data: catBattlesData } = useReadContracts({
-    contracts: tokenIds?.map((tokenId) => ({
-      address: WARRIOR_CATS_ADDRESS,
-      abi: warriorCatsABI,
-      functionName: 'getBattlesByCat',
-      args: [tokenId],
-    })) ?? [],
-  });
 
   useEffect(() => {
     async function fetchCatsData() {
@@ -263,9 +110,9 @@ export default function MyCats() {
         const processedCats = await Promise.all(
           tokenIds.map(async (tokenId, index) => {
             try {
-              const dataIndex = index * 7;
-              const battles = catData?.[dataIndex + 5]?.result;
-              const championCount = Number(catData?.[dataIndex + 6]?.result || 0n);
+              const dataIndex = index * 6;
+              const battles = catData?.[dataIndex + 4]?.result;
+              const championCount = Number(catData?.[dataIndex + 5]?.result || 0n);
               
               // Calculate wins and losses
               let wins = 0;
@@ -286,14 +133,12 @@ export default function MyCats() {
               const uri = catData[dataIndex]?.result;
               const state = catData[dataIndex + 1]?.result;
               const balance = catData[dataIndex + 2]?.result ?? 0n;
-              const stakedAmount = catData[dataIndex + 3]?.result ?? 0n;
-              const lifetimeRewards = catData[dataIndex + 4]?.result ?? 0n;
+              const lifetimeRewards = catData[dataIndex + 3]?.result ?? 0n;
 
               /*console.log(`Processing cat ${tokenId}:`, {
                 uri,
                 state,
                 balance,
-                stakedAmount,
                 dataIndex
               });*/
 
@@ -302,7 +147,6 @@ export default function MyCats() {
                   uri,
                   state,
                   balance,
-                  stakedAmount,
                   dataIndex
                 });
                 return null;
@@ -338,7 +182,6 @@ export default function MyCats() {
                 isStaked: false,
                 wins,
                 losses,
-                stakedAmount: stakedAmount as bigint,
                 lifetimeRewards,
                 championCount,
               };
@@ -410,9 +253,19 @@ export default function MyCats() {
         args: [BigInt(tokenId)],
       });
 
-      if (!reviveHash) {
+      const receipt = await publicClient?.waitForTransactionReceipt({ hash: reviveHash })
+
+      if (!reviveHash || receipt?.status != "success") {
         throw new Error('Unable to process revival transaction');
       }
+
+      const updatedCats = cats.map(c => {
+        if(c.id != tokenId) {
+          return {...c, state: 1 } as Cat;
+        }
+        return c;
+      });
+      setCats(updatedCats)
 
       setStakingTxHash(reviveHash);
     } catch (error) {
@@ -476,8 +329,17 @@ export default function MyCats() {
       const receipt = await publicClient?.waitForTransactionReceipt({ hash })
 
       if (!hash || receipt?.status != "success") {
-        throw new Error('Unable to process revival transaction');
+        throw new Error('Unable to process revival all transaction');
       }
+
+      const updatedCats = cats.map(c => {
+        const foundCat = catsToRevive.find(cr => cr.id == c.id);
+        if(foundCat) {
+          return {...c, state: 1 } as Cat;
+        }
+        return c;
+      });
+      setCats(updatedCats)
 
       setTxHash(hash);
     } catch (error) {
@@ -523,7 +385,6 @@ export default function MyCats() {
           throw new Error('Only Cats needs approval to manage your MOR balance');
         }
 
-        setApprovalTxHash(approveHash);
         await publicClient.waitForTransactionReceipt({ hash: approveHash });
         setShowApprovalModal(false);
         setIsApproving(false);
@@ -558,9 +419,20 @@ export default function MyCats() {
         args: [catsWithBalance.map(cat => BigInt(cat.id))],
       });
 
-      if (!hash) {
-        throw new Error('Unable to process claim transaction');
+      const receipt = await publicClient?.waitForTransactionReceipt({ hash })
+
+      if (!hash || receipt?.status != "success") {
+        throw new Error('Unable to process claim all transaction');
       }
+
+      const updatedCats = cats.map(c => {
+        const foundCat = catsWithBalance.find(cr => cr.id == c.id);
+        if(foundCat) {
+          return {...c, balance: BigInt(0) } as Cat;
+        }
+        return c;
+      });
+      setCats(updatedCats)
 
       setClaimAllTxHash(hash);
     } catch (error) {
@@ -793,13 +665,22 @@ export default function MyCats() {
                         {cat.balance > 0n && (
                           <ClaimTokensButton 
                             tokenId={cat.id}
+                            onClaim={(tokenId: string) => {
+                              const updatedCats = cats.map(c => {
+                                if(c.id != tokenId) {
+                                  return {...c, balance: BigInt(0) } as Cat;
+                                }
+                                return c;
+                              });
+                              setCats(updatedCats)
+                            }}
                             className="px-3 py-1 text-xs rounded-full bg-yellow-500/10 
                               text-yellow-400 hover:bg-yellow-500/20 transition-colors
                               border border-yellow-500/20 hover:border-yellow-500/30
                               flex items-center gap-1"
                           >
-                            <span>💰</span>
-                            <span>Claim Rewards</span>
+                              <span>💰</span>
+                              <span>Claim Rewards</span>
                           </ClaimTokensButton>
                         )}
                       </div>
